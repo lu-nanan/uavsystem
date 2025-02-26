@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button  id="login-button">管理员</button>
+<button id="1">普通用户</button>
+</body>
+<script>
+    document.getElementById("1").addEventListener("click",function () {
+        let account ="2022412061@qq.com";
+        let loginType = "user";
+        let password = "123456";
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/UVASystem_war_exploded/login-servlet', true);  //  设置请求头，指定发送的数据为JSON格式
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(`loginType=${loginType}&account=${account}&password=${password}`);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const responseTest = JSON.parse(xhr.response);
+                if(responseTest.result === "200") {
+                    alert(responseTest.result);
+                    sessionStorage.setItem("userId",responseTest.userID);
+                    alert(responseTest.userID);
+                    window.location.href = "userHome.html";
+                }
+                else alert(responseTest.result);
+            }
+        };
+    })
+    document.getElementById("login-button").addEventListener("click",function () {
+        let account ="2022412089@qq.com";
+        let loginType = "admin";
+        let password = "54546646";
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/UVASystem_war_exploded/login-servlet', true);  //  设置请求头，指定发送的数据为JSON格式
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send(`loginType=${loginType}&account=${account}&password=${password}`);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const responseTest = JSON.parse(xhr.response);
+                if(responseTest.result === "200") {
+                    alert(responseTest.result);
+                    sessionStorage.setItem("userId",responseTest.userID);
+                    window.location.href = "admin/managerHome.html";
+                }
+                else alert(responseTest.result);
+            }
+        };
+    })
+</script>
+</html>

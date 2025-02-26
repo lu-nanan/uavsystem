@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <!--<meta http-equiv="refresh" content="5">-->
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="userManage.html" class="leftNav-item">用户管理</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="log.html" class="leftNav-item">日志</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+            <a href="blacklistManagemengt.html" class="leftNav-item">黑名单管理</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">用户管理</p>
+</div>
+<div class="form-container">
+    <div class="rowOne-container">
+        <select class="dropdown-selector" id="searchOption">
+            <option value="email">邮箱</option>
+            <option value="telephone">手机号</option>
+            <option value="password">密码</option>
+        </select>
+        <input style="height: 28px" type="text" id="searchInput" placeholder="请输入">
+        <button  class="search-button" id="searchButton">查询</button>
+        <button  class="new-button" id="newButton">+新建</button>
+    </div>
+    <script>
+        document.getElementById("newButton").addEventListener("click",function () {
+            window.location.href="register.html";
+            }
+        )
+    </script>
+    <script>
+    document.getElementById("searchButton").addEventListener("click", function () {
+        const searchInput = document.getElementById("searchInput").value;
+        const searchOption = document.getElementById("searchOption").value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `/UVASystem_war_exploded/userManageSea-servlet?searchInput=${searchInput}&searchOption=${searchOption}`, true);
+        // 设置请求头，指定发送的数据为JSON格式
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const paginationElement = document.getElementById("pagination");
+                if (paginationElement) {
+                    paginationElement.remove();
+                }
+                const flowContainer = document.getElementById('flowContainer');
+                flowContainer.style.overflow = 'auto';
+                flowContainer.style.maxHeight = '400px';
+                const tbody = document.getElementById('dataBody');
+                const responseTexts = JSON.parse(xhr.responseText);
+                let totalPages;
+                if (responseTexts.length > 0) {
+                    totalPages = responseTexts[0].totalPages;
+                } else {
+                    totalPges = 0;
+                }
+                sessionStorage.setItem("totalPages",totalPages);
+                tbody.innerHTML="";
+                responseTexts.forEach(responseText => {
+                    const row = tbody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5 = row.insertCell(4);
+                    cell1.textContent = responseText.id;
+                    cell2.textContent = responseText.email;
+                    cell3.textContent = responseText.telephone;
+                    cell4.textContent = responseText.password;
+                    const deleteLink = document.createElement('a');
+
+                    deleteLink.addEventListener("click",function () {
+                        const xhr1 = new XMLHttpRequest();
+                        xhr1.open('GET', `/UVASystem_war_exploded/AdminUserDel-servlet?id=${responseText.id}`, true);
+                        xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr1.send();
+                        xhr1.onreadystatechange = function () {
+                            if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                const responseText = JSON.parse(xhr1.response);
+                                alert(responseText.message);
+                                location.reload();
+                            }
+                        }
+                    })
+                    // deleteLink.href = `/UVASystem_war_exploded/AdminUserDel-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                    deleteLink.textContent = '删除';
+                    const deleteButton = document.createElement('button');
+                    deleteButton.style.backgroundColor ='#BD3124';
+                    deleteButton.style.border = 'none';
+                    deleteButton.style.borderRadius = '5px';
+                    deleteLink.style.color = 'white';
+                    deleteLink.style.textDecoration = 'none';
+                    deleteButton.appendChild(deleteLink);
+                    cell5.appendChild(deleteButton);
+                    const editLink = document.createElement('a');
+
+                    editLink.addEventListener("click",function () {
+                        const xhr1 = new XMLHttpRequest();
+                        xhr1.open('GET', `/UVASystem_war_exploded/editUser-servlet?id=${responseText.id}`, true);
+                        xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr1.send();
+                        xhr1.onreadystatechange = function () {
+                            if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                const responseText = JSON.parse(xhr1.response);
+                                alert(responseText.message);
+                                location.reload();
+                            }
+                        }
+                    })
+                    // editLink.href = `/UVASystem_war_exploded/editUser-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                    editLink.textContent = '初始化';
+                    const editButton = document.createElement('button');
+                    editButton.style.backgroundColor ='#BD3124';
+                    editButton.style.border = 'none';
+                    editButton.style.borderRadius = '5px';
+                    editLink.style.color = 'white';
+                    editLink.style.textDecoration = 'none';
+                    editButton.appendChild(editLink);
+                    cell5.appendChild(editButton);
+                    const shieldLink = document.createElement('a');
+
+                    shieldLink.addEventListener("click",function () {
+                        const xhr1 = new XMLHttpRequest();
+                        xhr1.open('GET', `/UVASystem_war_exploded/addBlack-servlet?id=${responseText.id}`, true);
+                        xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                        xhr1.send();
+                        xhr1.onreadystatechange = function () {
+                            if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                const responseText = JSON.parse(xhr1.response);
+                                alert(responseText.message);
+                                location.reload();
+                            }
+                        }
+                    })
+                    //shieldLink.href = `/UVASystem_war_exploded/addBlack-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                    shieldLink.textContent = '拉黑';
+                    const shieldButton = document.createElement('button');
+                    shieldButton.style.backgroundColor ='#BD3124';
+                    shieldButton.style.border = 'none';
+                    shieldButton.style.borderRadius = '5px';
+                    shieldLink.style.color = 'white';
+                    shieldLink.style.textDecoration = 'none';
+                    shieldButton.appendChild(shieldLink);
+                    cell5.appendChild(shieldButton);
+                });
+            }
+        };
+    });
+    </script>
+    <div id="flowContainer">
+        <table class="myTable">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>邮箱</th>
+                <th>手机号</th>
+                <th>密码</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataBody">
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination" id="pagination"></div>
+    <script>
+        let currentPage = 1;
+        // 生成分页链接函数，优化活动页切换逻辑
+        function generatePagination() {
+            totalPages = sessionStorage.getItem("totalPages");
+            const pagination = document.getElementById("pagination");
+            // 清空现有的分页链接
+            pagination.innerHTML = '';
+            let startPage;
+            let endPage;
+            if(totalPages < 5) {
+                startPage = 1;
+                endPage = totalPages;
+            }
+            else {
+                startPage = Math.max(currentPage-2,1);
+                if(currentPage < 3) {
+                    endPage = 5;
+                }
+                else {
+                    endPage = Math.min(totalPages,currentPage+2);
+                }
+            }
+            // 生成“上一页”链接
+            const prevLink = document.createElement('a');
+            prevLink.href = '#';
+            prevLink.textContent = `<`;
+            prevLink.classList.add('prev');
+            if (currentPage === 1) {
+                prevLink.disabled = true;
+            } else {
+                prevLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage--;
+                    handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                    generatePagination();
+                });
+            }
+            pagination.appendChild(prevLink);
+            // 生成分页链接
+            for (let i = startPage; i <= endPage; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.textContent = i;
+                pageLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage = i;
+                    handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                    generatePagination();
+                });
+                if (i === currentPage) {
+                    pageLink.classList.add("active");
+                }
+                pageLink.classList.add("page");
+                pagination.appendChild(pageLink);
+            }
+            // 生成“下一页”链接
+            const nextLink = document.createElement('a');
+            nextLink.href = '#';
+            nextLink.textContent = '>';
+            nextLink.classList.add('next');
+            if (currentPage === parseInt(totalPages)) {
+                nextLink.disabled = true;
+            } else {
+                nextLink.addEventListener('click', function (e) {
+                    console.log(totalPages);
+                    e.preventDefault();
+                    console.log("error");
+                    currentPage++;
+                    handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                    generatePagination();
+                });
+            }
+            pagination.appendChild(nextLink);
+        }
+        function handleAjaxRequest(page) {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/UVASystem_war_exploded/userManage-servlet?page=${page}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/json'); // 这里修正为正确的JSON格式请求头
+            xhr.send();
+            handleAjaxResponse(xhr);
+        }
+        function handleAjaxResponse(xhr) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const tbody = document.getElementById('dataBody');
+                    const responseTexts = JSON.parse(xhr.responseText);
+                    let totalPages;
+                    if (responseTexts.length > 0) {
+                        totalPages = responseTexts[0].totalPages;
+                    } else {
+                        totalPages = 0;
+                    }
+                    sessionStorage.setItem("totalPages",totalPages);
+                    generatePagination();
+                    tbody.innerHTML="";
+                    responseTexts.forEach(responseText => {
+                        const row = tbody.insertRow();
+                        const cell1 = row.insertCell(0);
+                        const cell2 = row.insertCell(1);
+                        const cell3 = row.insertCell(2);
+                        const cell4 = row.insertCell(3);
+                        const cell5 = row.insertCell(4);
+                        cell1.textContent = responseText.id;
+                        cell2.textContent = responseText.email;
+                        cell3.textContent = responseText.telephone;
+                        cell4.textContent = responseText.password;
+                        const deleteLink = document.createElement('a');
+
+                        deleteLink.addEventListener("click",function () {
+                            const xhr1 = new XMLHttpRequest();
+                            xhr1.open('GET', `/UVASystem_war_exploded/AdminUserDel-servlet?id=${responseText.id}`, true);
+                            xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr1.send();
+                            xhr1.onreadystatechange = function () {
+                                if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                    const responseText = JSON.parse(xhr1.response);
+                                    alert(responseText.message);
+                                    location.reload();
+                                }
+                            }
+                        })
+                        // deleteLink.href = `/UVASystem_war_exploded/AdminUserDel-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                        deleteLink.textContent = '删除';
+                        const deleteButton = document.createElement('button');
+                        deleteButton.style.backgroundColor ='#BD3124';
+                        deleteButton.style.border = 'none';
+                        deleteButton.style.borderRadius = '5px';
+                        deleteLink.style.color = 'white';
+                        deleteLink.style.textDecoration = 'none';
+                        deleteButton.appendChild(deleteLink);
+                        cell5.appendChild(deleteButton);
+                        const editLink = document.createElement('a');
+
+                        editLink.addEventListener("click",function () {
+                            const xhr1 = new XMLHttpRequest();
+                            xhr1.open('GET', `/UVASystem_war_exploded/editUser-servlet?id=${responseText.id}`, true);
+                            xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr1.send();
+                            xhr1.onreadystatechange = function () {
+                                if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                    const responseText = JSON.parse(xhr1.response);
+                                    alert(responseText.message);
+                                    location.reload();
+                                }
+                            }
+                        })
+                        // editLink.href = `/UVASystem_war_exploded/editUser-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                        editLink.textContent = '初始化';
+                        const editButton = document.createElement('button');
+                        editButton.style.backgroundColor ='#BD3124';
+                        editButton.style.border = 'none';
+                        editButton.style.borderRadius = '5px';
+                        editLink.style.color = 'white';
+                        editLink.style.textDecoration = 'none';
+                        editButton.appendChild(editLink);
+                        cell5.appendChild(editButton);
+                        const shieldLink = document.createElement('a');
+
+                        shieldLink.addEventListener("click",function () {
+                            const xhr1 = new XMLHttpRequest();
+                            xhr1.open('GET', `/UVASystem_war_exploded/addBlack-servlet?id=${responseText.id}`, true);
+                            xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                            xhr1.send();
+                            xhr1.onreadystatechange = function () {
+                                if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                    const responseText = JSON.parse(xhr1.response);
+                                    alert(responseText.message);
+                                    location.reload();
+                                }
+                            }
+                        })
+                        //shieldLink.href = `/UVASystem_war_exploded/addBlack-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                        shieldLink.textContent = '拉黑';
+                        const shieldButton = document.createElement('button');
+                        shieldButton.style.backgroundColor ='#BD3124';
+                        shieldButton.style.border = 'none';
+                        shieldButton.style.borderRadius = '5px';
+                        shieldLink.style.color = 'white';
+                        shieldLink.style.textDecoration = 'none';
+                        shieldButton.appendChild(shieldLink);
+                        cell5.appendChild(shieldButton);
+                    });
+                }
+            };
+        }
+        //页面初始化
+        window.onload=function (){
+            const page="1";
+            const xhr = new XMLHttpRequest();  //  使用 AJAX 从 Servlet 获取数据并填充表格
+            xhr.open('GET', `/UVASystem_war_exploded/userManage-servlet?page=${page}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+            xhr.send();
+            handleAjaxResponse(xhr);
+        }
+    </script>
+</div>
+</body>
+</html>

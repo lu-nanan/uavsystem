@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无人机系统</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body style="background-image: url('image/img.png'); background-size:cover; background-repeat: no-repeat;">
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;"><strong>对抗环境下无人机群动态任务协助与迁移系统</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="loginleftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a class="login-Nav-item"><strong>用户登录</strong></a>
+        </div>
+    </div>
+</div>
+<div class="login-tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;margin-right: 62px;"><strong>登录</strong></p>
+    <div class="login-container" id="login-container">
+        <form class="newform-container" action="">
+            <label for="id" class="account-label">账号</label>
+            <input class="login-input"  id="id" placeholder="请输入手机号/邮箱"><br>
+            <label for="password" class="account-label">密码</label>
+            <input class="login-input"  id="password" type="password" placeholder="请输入密码"><br>
+            <p class="register-link"><strong>如果您没有账号，请点击注册</strong></a></p>
+        </form>
+    </div>
+    <button class="login-btn" id="login-button">登录</button>
+    <button class="login-btn" id="register-button">注册</button>
+</div>
+<div class="bottom-container" id="bottom-container">
+    <p>     </p>
+</div>
+
+<!--&lt;!&ndash; 登录页面 &ndash;&gt;-->
+</body>
+<script>
+    window.onload=function () {
+        document.getElementById("login-button").addEventListener("click",function () {
+            let account ="2022412089@qq.com";
+            let password = "54546646";
+            account = document.getElementById("id").value;
+            password = document.getElementById("password").value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/login-servlet', true);  //  设置请求头，指定发送的数据为JSON格式
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`account=${account}&password=${password}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.response);
+                    if(responseTest.result === "200") {
+                        sessionStorage.setItem("userId",responseTest.userID);
+                        if(responseTest.type === 1) {
+                            window.location.href = "userHome.html";
+                        }
+                        else {
+                            window.location.href = "admin/managerHome.html";
+                        }
+                    }
+                    else alert(responseTest.message);
+                }
+            };
+        })
+        document.getElementById("register-button").addEventListener("click",function () {
+            window.location.href= 'newregister.html';
+        })
+    }
+
+</script>
+</html>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.DeviceStateMapper">
+    <resultMap id="DeviceStateResultMap" type="com.hnu.entity.DeviceState">
+        <result property="deviceid" column="无人机ID"/>
+        <result property="charge" column="电量"/>
+        <result property="X" column="位置坐标X"/>
+        <result property="Y" column="位置坐标Y"/>
+        <result property="Z" column="高度坐标"/>
+        <result property="action" column="当前动作"/>
+    </resultMap>
+    <!-- 定义查询所有无人机状态 语句-->
+    <select id="findAllState" resultMap="DeviceStateResultMap">
+        SELECT * FROM 无人机状态
+    </select>
+
+    <!-- 定义根据 ID 查询无人机状态SQL 语句-->
+    <select id="findStateById" parameterType="int" resultMap="DeviceStateResultMap">
+        SELECT * FROM 无人机状态 WHERE 无人机ID = #{id};
+    </select>
+    <select id="findStateByAction" parameterType="String" resultMap="DeviceStateResultMap">
+        SELECT * FROM 无人机状态 WHERE 当前动作= #{action};
+    </select>
+    <select id="findStateByX" parameterType="double" resultMap="DeviceStateResultMap">
+        SELECT * FROM 无人机状态 WHERE 位置坐标X= #{X};
+    </select>
+    <select id="findStateByY" parameterType="double" resultMap="DeviceStateResultMap">
+        SELECT * FROM 无人机状态 WHERE 位置坐标Y= #{Y};
+    </select>
+    <select id="findStateByZ" parameterType="double" resultMap="DeviceStateResultMap">
+        SELECT * FROM 无人机状态 WHERE 高度坐标= #{Z};
+    </select>
+    <!-- 定义新增无人机状态的 SQL 语句-->
+    <insert id="addState" parameterType="com.hnu.entity.DeviceState" useGeneratedKeys="true" keyColumn="无人机ID" keyProperty="id">
+        INSERT INTO 无人机状态(无人机,电量,位置坐标X,位置坐标Y,高度坐标,当前动作) VALUES (#{id}, #{charge}, #{X}, #{Y},#{Z},#{action});
+    </insert>
+
+    <!-- 定义根据无人机 ID 删除无人机状态的 SQL 语句-->
+    <delete id="deleteStateById" parameterType="int" >
+        DELETE FROM 无人机状态 WHERE 无人机ID=#{id};
+    </delete>
+
+    <!-- 定义根据用户 ID 更新用户动作的 SQL 语句-->
+    <update id="updateActionById">
+        UPDATE 无人机状态 SET 当前动作= #{action} WHERE 用户ID = #{id};
+    </update>
+
+</mapper>
+

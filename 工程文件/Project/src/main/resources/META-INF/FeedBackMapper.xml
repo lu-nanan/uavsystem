@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.FeedBackMapper">
+    <resultMap id="FeedBackResultMap" type="com.hnu.entity.FeedBack">
+        <result property="userid" column="用户"/>
+        <result property="time" column="时间"/>
+        <result property="content" column="内容"/>
+        <result property="ishandle" column="是否已处理"/>
+        <result property="feedid" column="反馈ID"/>
+    </resultMap>
+    <!-- 定义查询所有用户反馈的 SQL 语句-->
+    <select id="findAllFeed" resultMap="FeedBackResultMap">
+        SELECT * FROM 用户反馈表;
+    </select>
+
+    <!-- 定义根据用户 ID 查询用户反馈的 SQL 语句-->
+    <select id="findFeedById" parameterType="int" resultMap="FeedBackResultMap">
+        SELECT * FROM 用户反馈表 WHERE 用户 = #{userid};
+    </select>
+    <select id="findUserByFId" parameterType="int" resultMap="FeedBackResultMap">
+        SELECT * FROM 用户反馈表
+                 WHERE 反馈ID= #{feedid};
+    </select>
+    <select id="findUserByDate" parameterType="Date" resultMap="FeedBackResultMap">
+        SELECT * FROM 用户反馈表 WHERE 时间= #{time};
+    </select>
+    <select id="findUserByDateId" parameterType="map" resultMap="FeedBackResultMap">
+        SELECT * FROM 用户反馈表 WHERE 时间= #{time} and 用户= #{id};
+    </select>
+
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addFeed" parameterType="com.hnu.entity.FeedBack" useGeneratedKeys="true" keyColumn="反馈ID" keyProperty="feedid">
+        INSERT INTO 用户反馈表 (用户,时间,内容,是否已处理,反馈ID) VALUES (#{userid}, #{time}, #{content}, #{ishandle}, #{feedid});
+    </insert>
+
+    <!-- 定义根据用户 ID 删除用户的 SQL 语句-->
+    <delete id="deleteUserById" parameterType="int" >
+        DELETE FROM 用户反馈表 WHERE 用户=#{userid};
+    </delete>
+    <delete id="deleteUserByFId" parameterType="int" >
+        DELETE FROM 用户反馈表 WHERE 反馈ID=#{feedid};
+    </delete>
+
+    <!-- 定义根据用户 ID 更新用户密码的 SQL 语句-->
+    <update id="updateFeedByFId">
+        UPDATE 用户反馈表 SET 是否已处理密码= #{ishandle} WHERE 反馈ID = #{feedid};
+    </update>
+</mapper>

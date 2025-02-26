@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.MapDataMapper">
+
+    <!-- 定义结果映射 -->
+    <resultMap id="MapDataMap" type="com.hnu.entity.MapData">
+        <result property="id" column="id"/>
+        <result property="xCoordinate" column="X"/>
+        <result property="yCoordinate" column="Y"/>
+        <result property="description" column="描述"/>
+        <result property="isFlyable" column="是否可飞越"/>
+        <result property="isParkable" column="是否可停靠"/>
+        <result property="blockId" column="地块id"/>
+    </resultMap>
+
+    <!-- 查询所有地图数据 -->
+    <select id="findAllMapData" resultMap="MapDataMap">
+        SELECT * FROM 地图数据表 ORDER BY id ASC;
+    </select>
+
+    <!-- 根据地图ID查询 -->
+    <select id="findMapDataById" parameterType="int" resultMap="MapDataMap">
+        SELECT * FROM 地图数据表 WHERE id = #{id};
+    </select>
+
+    <!-- 根据地块ID查询 -->
+    <select id="findMapDataByBlockId" parameterType="int" resultMap="MapDataMap">
+        SELECT * FROM 地图数据表 WHERE 地块id = #{blockId};
+    </select>
+
+    <!-- 根据可飞越属性查询 -->
+    <select id="findFlyableMapData" resultMap="MapDataMap">
+        SELECT * FROM 地图数据表 WHERE 是否可飞越 = 1;
+    </select>
+
+    <!-- 根据是否可停靠查询 -->
+    <select id="findParkableMapData" resultMap="MapDataMap">
+        SELECT * FROM 地图数据表 WHERE 是否可停靠 = 1;
+    </select>
+
+    <!-- 新增地图数据 -->
+    <insert id="addMapData" parameterType="com.hnu.entity.MapData" useGeneratedKeys="true" keyColumn="id" keyProperty="id">
+        INSERT INTO 地图数据表 (X, Y, 描述, 是否可飞越, 是否可停靠, 地块id)
+        VALUES (#{xCoordinate}, #{yCoordinate}, #{description}, #{isFlyable}, #{isParkable}, #{blockId});
+    </insert>
+
+    <!-- 根据地图ID删除地图数据 -->
+    <delete id="deleteMapDataById" parameterType="int">
+        DELETE FROM 地图数据表 WHERE id = #{id};
+    </delete>
+
+</mapper>

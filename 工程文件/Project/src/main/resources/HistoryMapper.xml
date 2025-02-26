@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.HistoryMapper">
+    <resultMap id="UserHistoryResultMap" type="com.hnu.entity.History">
+        <result property="userid" column="用户ID"/>
+        <result property="time" column="时间"/>
+        <result property="content" column="内容"/>
+        <result property="hisid" column="记录ID"/>
+    </resultMap>
+
+    <select id="findAllUserHistory" resultMap="UserHistoryResultMap">
+        SELECT * FROM
+            历史记录表 order by 时间 DESC;
+    </select>
+
+    <!-- 定义根据用户 ID 查询用户反馈的 SQL 语句-->
+    <select id="findHistoryByUId" parameterType="int" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表 Where 用户ID = #{userid} order by 时间 DESC;
+    </select>
+
+    <select id="findHistoryByHId" parameterType="int" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表  WHERE 记录ID= #{hisid};
+    </select>
+
+    <select id="findHistoryByHUId" parameterType="map" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表  WHERE 记录ID= #{hisid} and 用户ID=#{userid};
+    </select>
+
+    <select id="findHistoryByDate" parameterType="Date" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表 WHERE 时间= #{time};
+    </select>
+
+    <select id="findHistoryByDateId" parameterType="map" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表 WHERE 时间= #{time} and 用户ID= #{userid};
+    </select>
+
+    <select id="findHistoryByContentID" parameterType="map" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表 WHERE 内容= #{content} and 用户ID= #{userid};
+    </select>
+    <select id="findHistoryByContent" parameterType="String" resultMap="UserHistoryResultMap">
+        SELECT * FROM 历史记录表 WHERE 内容= #{content};
+    </select>
+
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addHistory" parameterType="com.hnu.entity.History" useGeneratedKeys="true" keyColumn="反馈ID" keyProperty="hisid">
+        INSERT INTO 历史记录表 (用户ID,时间,内容) VALUES (#{userid}, #{time}, #{content});
+    </insert>
+
+    <delete id="deleteUserByUId" parameterType="int" >
+        DELETE FROM 历史记录表 WHERE 用户ID=#{userid};
+    </delete>
+
+    <delete id="deleteUserByHId" parameterType="int" >
+        DELETE FROM 历史记录表 WHERE 记录ID=#{hisid};
+    </delete>
+
+</mapper>

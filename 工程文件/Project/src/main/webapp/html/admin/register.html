@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无人机系统</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+<body style="background-image: url('../image/img.png'); background-size:cover; background-repeat: no-repeat;">
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;"><strong>对抗环境下无人机群动态任务协助与迁移系统</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="loginleftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="userManage.html" class="leftNav-item">用户管理</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="log.html" class="leftNav-item">日志</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+            <a href="blacklistManagemengt.html" class="leftNav-item">黑名单管理</a>
+        </div>
+    </div>
+</div>
+<div class="login-tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;margin-right: 62px;"><strong>新建账号</strong></p>
+    <div class="login-container" id="login-container">
+        <form class="newform-container" action="">
+            <label for="Email" class="account-label">邮箱</label>
+            <input class="login-input"  id="Email" placeholder="请输入邮箱"><br>
+            <label for="phone" class="account-label">手机</label>
+            <input class="login-input"  id="phone" placeholder="请输入手机号"><br>
+            <label for="password" class="account-label">密码</label>
+            <input class="login-input" id="password" type="password" placeholder="请输入密码"><br>
+        </form>
+    </div>
+    <button class="login-btn" id="login-button">添加</button>
+    <button class="login-btn" id="register-button">返回</button>
+</div>
+<div class="bottom-container" id="bottom-container">
+    <p>     </p>
+</div>
+
+<!--&lt;!&ndash; 登录页面 &ndash;&gt;-->
+</body>
+<script>
+    window.onload=function () {
+        document.getElementById("login-button").addEventListener("click",function () {
+            let account = document.getElementById("Email").value;
+            let password = document.getElementById("password").value;
+            let phone = document.getElementById("phone").value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/addUser-servlet', true);  //  设置请求头，指定发送的数据为JSON格式
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`email=${account}&password=${password}&telephone=${phone}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.response);
+                    alert(responseTest.message);
+                }
+            };
+        })
+        document.getElementById("register-button").addEventListener("click",function () {
+            window.location.href= 'userManage.html';
+        })
+    }
+
+</script>
+</html>

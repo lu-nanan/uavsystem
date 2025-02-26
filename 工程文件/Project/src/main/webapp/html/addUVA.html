@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*左侧导航栏***********************/
+        .vertical.nav {
+            list-style-type: none;
+            padding-left: 0;
+            background-color: #333;
+            width: 150px;
+        }
+        .vertical-nav li {
+            border-bottom: 1px solid #ccc;
+        }
+        .vertical-nav li a {
+            text-decoration: none;
+            color: white;
+            display: block;
+            padding: 10px 15px;
+        }
+        .vertical.nav li a:hover {
+            background-color: #555;
+        }
+        /*顶部导航栏*********************/
+        /* 整体导航栏样式 */
+        .top-nav {
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        /* 导航栏中的文本样式 */
+        .nav-text {
+            font-size: 18px;
+        }
+
+        /* 导航链接列表样式 */
+        .nav-links {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        /* 单个导航链接样式 */
+        .nav-links li {
+            margin-left: 15px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: white;
+            padding: 5px 10px;
+        }
+
+        .nav-links li a:hover {
+            background-color: #555;
+        }
+        /*页面灰色背景****************************/
+        body {
+            background-color: #f4f4f4; /* 这里的#f4f4f4是一种常见的浅灰色十六进制颜色值 */
+        }
+        /*中部背景板***********************************/
+        .white-panel {
+            background-color: white;
+            width: 300px; /* 设置宽度，可以根据实际需求调整 */
+            height: 200px; /* 设置高度，可以根据实际需求调整 */
+            margin: 50px auto; /* 上下外边距为50px，左右自动居中 */
+            padding: 20px; /* 在内部添加内边距，使文字与边缘有一定距离 */
+            box-sizing: border-box; /* 确保内边距和边框包含在设定的宽度和高度内 */
+        }
+        /*背景板*/
+        .background-plate {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #EFF0F2;
+            z-index: -1;
+        }
+        /*左上导航栏容器*/
+        .navbar-container {
+            display: flex;
+            flex-direction: column; /* 使子元素垂直排列 */
+            height: 100%;
+        }
+        /* 顶部导航栏整体样式 */
+        .topNavbar-container {
+            display: flex;
+            background-color: #000A7B ;
+            width: 100%;
+            height:11.85%;
+            top: 0;
+        }
+        /* 顶部导航栏内容容器样式，用于水平排列元素 */
+        .topNavbar-content {
+            display: flex;
+            width: 100%;
+        }
+        /* 顶部文本框样式 */
+        .topNavbar-content-paragraph {
+            color: white;
+            margin-top: 5px;
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            text-align: center;
+            margin-left: 280px;
+        }
+        .topNavbarItems{
+            margin-top: 42px;
+            margin-left: auto;
+            text-decoration: none;
+            margin-right: 55px;
+        }
+        /* 顶部导航项样式 */
+        .topNav-item {
+            color: white;
+            padding-left: 20px;
+            text-decoration: none;
+        }
+        /* 左侧导航栏整体样式 */
+        .leftNavbar-container {
+            background-color: white ;
+            width: 15%;
+            overflow: hidden;
+            height:90vh;
+            display: flex;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        /* 左侧导航栏内容容器样式，用于垂直排列元素 */
+        .leftNavbar-items {
+            display: flex;
+            flex-direction: column; /* 设置为垂直排列方向 */
+            align-items: flex-start; /* 左对齐（可根据需求调整为其他对齐方式，如center则为居中对齐等） */
+            width: 80%;
+            margin: 0 auto;
+        }
+        /* 左侧导航项样式 */
+        .leftNav-item {
+            color: #0F40F5;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        /*标题容器*/
+        .form-container {
+            position: absolute;
+            padding: 20px;
+            top: 290px;
+            left: 327px;
+            margin: auto;
+            bottom: 0; /* 距离页面底部0px，使其紧贴底部 */
+            right: 0; /* 距离页面右侧0px，使其紧贴右侧 */
+            width: 78.5%; /* 设置容器宽度，可按需修改 */
+            height: 64.25555%; /* 设置容器高度，可按需修改 */
+            background-color: white; /* 设置容器背景色，可按需修改 */
+            border-radius: 20px 0 0 0; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .tile-container {
+            position: absolute;
+            top: 180px; /* 距离上方导航栏100px，可以根据实际情况调整 */
+            right: 0; /* 根据容器宽度调整，这里假设容器宽200px，使其紧靠右侧 */
+            width: 80.677%; /* 设置容器宽度，可按需修改 */
+            height: 9.259%; /* 设置容器高度，可按需修改 */
+            background-color: white; /* 设置容器背景色，可按需修改 */
+            border-radius: 20px 0 0 20px; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+            /*padding: 20px 20px 20px 20px; /* 设置容器内边距，可按需修改 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+        }
+        .search-button {
+            padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+            border: none; /* 去除默认边框 */
+            border-radius: 5px; /* 设置边框圆角效果 */
+            background-color: #007BFF; /* 设置填充颜色为蓝色 */
+            color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+            cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+            font-family: Arial, sans-serif; /* 设置文本字体 */
+            font-size: 14px; /* 设置初始文本大小，可扩展 */
+            outline: none; /* 去除获得焦点时的默认轮廓线 */
+            position: absolute;
+            /* 以下属性用于实现大小可定制 */
+            width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+            height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+            margin-left: 12px;
+        }
+        .new-buttonNew {
+            padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+            border: none; /* 去除默认边框 */
+            border-radius: 5px; /* 设置边框圆角效果 */
+            background-color: #BD3124; /* 设置填充颜色为蓝色 */
+            color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+            cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+            font-family: Arial, sans-serif; /* 设置文本字体 */
+            font-size: 14px; /* 设置初始文本大小，可扩展 */
+            outline: none; /* 去除获得焦点时的默认轮廓线 */
+            position: absolute;
+            /* 以下属性用于实现大小可定制 */
+            width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+            height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+            margin-left: 12px;
+        }
+        .myTable thead th {
+            background-color: #EFEFEF; /* 设置表头背景颜色为蓝色 */
+            color: black; /* 设置表头文字颜色为白色 */
+            padding: 10px; /* 设置表头单元格内边距 */
+            text-align: center; /* 设置表头文字左对齐，可根据需求调整对齐方式 */
+            border: 1px solid #ccc; /* 设置表格表头单元格边框为1px的灰色实线边框 */
+        }
+        /* 表格主体样式 */
+        .myTable tbody tr td {
+            border: 1px solid #ccc; /* 设置表格主体单元格边框为1px的灰色实线边框 */
+            padding: 8px; /* 设置表格主体单元格内边距 */
+            text-align: center; /* 设置表格主体单元格文字中心对齐，可根据需求调整对齐方式 */
+        }
+        /* 鼠标悬停在表格行上的样式（可选） */
+        .myTable tbody tr:hover {
+            background-color: #f5f5f5; /* 设置鼠标悬停时表格行的背景颜色为浅灰色 */
+        }
+        .pagination a {
+            display: inline-block;
+            padding: 8px 12px;
+            margin: 0 5px;
+            text-decoration: none;
+            color: #333;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background-color: #fff;
+        }
+        .pagination a.active {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        .pagination a.prev,
+        .pagination a.next {
+            background-color: #f9f9f9;
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            transition: border-color 0.1s;
+        }
+        input[type="text"]:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+    </style>
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="taskList.html" class="leftNav-item">任务列表</a>
+            <a href="uavStatus.html" class="leftNav-item">无人机状态</a>
+            <a href="uavInformation.html" class="leftNav-item">无人机信息</a>
+            <a href="uavBreakdown.html" class="leftNav-item">无人机故障</a>
+            <a href="uavOm.html" class="leftNav-item">无人机运维</a>
+            <a href="TransMessage.html" class="leftNav-item">信息转传输</a>
+            <a href="mapInformation.html" class="leftNav-item">地图消息</a>
+            <a href="UavPathInfo.html" class="leftNav-item">路径规划</a>
+            <a href="dataCollection.html" class="leftNav-item">返回数据</a>
+            <a href="pitcureCollection.html" class="leftNav-item">返回图片</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">添加无人机</p>
+</div>
+<div class="form-container">
+    <div style="margin-left: 50px">
+        <p><label for="model">型号</label><input id="model" type="text" placeholder="请输入型号"></p>
+        <a>A：浇水 B：施肥 C:勘察</a>
+        <p><label for="producer">生产商</label><input id="producer" type="text" placeholder="请输入生产商"></p>
+        <p><label for="endurance">续航</label><input id="endurance" type="text" placeholder="请输入续航"></p>
+        <p><label for="imageTrans">图传</label><input id="imageTrans" type="text" placeholder="请输入图传"></p>
+        <p><label for="buydingDate">购买日期</label><input id="buydingDate" type="text" placeholder="请输入购买日期"></p>
+        <a>输入格式“2024-10-22”</a>
+        <button style="margin-top: 29px;margin-left: 320px" class="search-button" id="submitButton">提交</button>
+        <button style="margin-top: 29px;margin-left: 460px" class="new-buttonNew" id="backButton">返回</button>
+    </div>
+
+</div>
+
+    <script>
+        document.getElementById("submitButton").addEventListener("click", function () {
+            const model = document.getElementById("model").value;
+            const producer = document.getElementById("producer").value;
+            const endurance = document.getElementById("endurance").value;
+            const imageTrans = document.getElementById("imageTrans").value;
+            const buydingDate = document.getElementById("buydingDate").value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/submitUavInfo-servlet', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`model=${model}&producer=${producer}&endurance=${endurance}&imageTrans=${imageTrans}&buydingDate=${buydingDate}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.responseText);
+                    if(responseTest.result === "200") {
+                        alert(responseTest.message);
+                        location.reload();
+                    }
+                    else alert(responseTest.message);
+                }
+            };
+        });
+        document.getElementById("backButton").addEventListener("click", function () {
+            window.location.href = 'uavInformation.html';
+        });
+    </script>
+</body>
+</html>

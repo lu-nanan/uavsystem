@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册界面</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-size: cover; /* 使背景图像覆盖整个背景 */
+            background-position: center; /* 背景图像居中 */
+            color: #333; /* 设置文字颜色为深色 */
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        header {
+            background-color: rgba(0, 123, 255, 0.9); /* 半透明蓝色背景 */
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .main {
+            display: flex;
+            flex: 1; /* 使主区域占满剩余空间 */
+        }
+        .sidebar {
+            width: 250px; /* 侧边栏宽度 */
+            background-color: rgba(255, 255, 255, 0.9); /* 半透明白色背景 */
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+        .container {
+            flex: 1; /* 让内容区域占满剩余空间 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .register-container {
+            width: 100%;
+            max-width: 400px; /* 限制注册表单的最大宽度 */
+            border-radius: 20px;
+            padding: 40px;
+            
+            backdrop-filter: blur(10px); /* 添加背景模糊效果 */
+        }
+        h2 {
+            margin-bottom: 20px;
+            text-align: center;
+            color: #007BFF; /* 设置子标题颜色为蓝色 */
+            font-weight: bold;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            width: 100%; /* 让表单宽度占满容器 */
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            transition: border-color 0.3s;
+        }
+        input:focus, select:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        button {
+            padding: 12px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .login-link {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .login-link a {
+            color: #007BFF;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .sidebar {
+                display: none;  /*  在小屏幕上隐藏侧边栏 */
+            }
+            .container {
+                width: 100%;
+                height: auto;  /*  适应内容高度 */
+            }
+        }
+    </style>
+</head>
+<body>
+<header>
+    对抗环境下无人机群动态任务协作与迁移系统
+</header>
+<div class="main">
+    <div class="sidebar">
+        <p>用户注册</p>
+    </div>
+    <div class="container">
+        <div class="register-container">
+            <h2>注册新账号</h2>
+            <form id="registerForm">
+                <label for="func">注册方式</label>
+                <select id="func" name="func" required>
+                    <option value="telephone">手机号</option>
+                    <option value="email">邮箱</option>
+                </select>
+                <label for="telephone">手机号</label>
+                <input type="text" id="telephone" name="account" placeholder="请输入手机号" required />
+                <label for="email">邮箱</label>
+                <input type="email" id="email" name="account" placeholder="请输入邮箱" required />
+                <label for="password">密码</label>
+                <input type="password" id="password" name="password" placeholder="请输入密码" required />
+                <label for="confirmPassword">确认密码</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="请再次输入密码" required />
+                <button type="button" id="sendVerificationCodeBtn">发送验证码到邮箱</button>
+                <label for="verificationCode">验证码</label>
+                <input type="text" id="verificationCode" name="verificationCode" placeholder="输入验证码" required/>
+                <button type="submit" id="registerBtn">注册</button>
+            </form>
+            <div class="login-link">
+                已有账号？ <a href="/UVASystem_war_exploded/index.html">登录</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+<script>  //  页面初始化
+    window.onload=function () {
+        document.getElementById("registerBtn").addEventListener("click",function register () {
+            var selectElement = document.getElementById('func');
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            const registerType = selectedOption.value;
+            const email = document.getElementById('email').value;
+            const telephone=document.getElementById('telephone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const verifCode = document.getElementById('verificationCode').value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/register-servlet', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`registerType=${registerType}&email=${email}&telephone=${telephone}&password=${password}&confirmPassword=${confirmPassword}&verifCode=${verifCode}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.response);
+                    if(responseTest.result == "success") {
+                        alert(responseTest.message);
+                    }
+                    else alert(responseTest.message);
+                }
+            };
+        });
+        document.getElementById("sendVerificationCodeBtn").addEventListener("click",function sendVerifCode () {
+            var selectElement = document.getElementById('func');
+            var selectedOption = selectElement.options[selectElement.selectedIndex];
+            const registerType = selectedOption.value;
+            let accountHelper;
+            if(registerType == "email") {
+                accountHelper=document.getElementById('email').value;
+            }
+            else accountHelper=document.getElementById('telephone').value;
+            const email = document.getElementById('email').value;
+            const telephone=document.getElementById('telephone').value;
+            const account=accountHelper;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/sendVerifCode-servlet', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`account=${account}&registerType=${registerType}&email=${email}&telephone=${telephone}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.response);
+                    if(responseTest.result == "success") {
+                        alert(responseTest.message);
+                    }
+                    else alert(responseTest.message);
+                }
+            };
+        });
+    }
+</script>
+</body>
+</html>

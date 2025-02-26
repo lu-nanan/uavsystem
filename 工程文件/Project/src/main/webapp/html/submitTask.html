@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="taskList.html" class="leftNav-item">任务列表</a>
+            <a href="uavStatus.html" class="leftNav-item">无人机状态</a>
+            <a href="uavInformation.html" class="leftNav-item">无人机信息</a>
+            <a href="uavBreakdown.html" class="leftNav-item">无人机故障</a>
+            <a href="uavOm.html" class="leftNav-item">无人机运维</a>
+            <a href="TransMessage.html" class="leftNav-item">信息转传输</a>
+            <a href="mapInformation.html" class="leftNav-item">地图消息</a>
+            <a href="UavPathInfo.html" class="leftNav-item">路径规划</a>
+            <a href="dataCollection.html" class="leftNav-item">返回数据</a>
+            <a href="pitcureCollection.html" class="leftNav-item">返回图片</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">提交任务</p>
+</div>
+<div class="form-containerNew">
+    <p style="color: black; font-size: 20px;margin-left: 62px;margin-top: 50px;width: 50px">内容：</p>
+    <textarea id="myInput" rows="12" cols="100" style="font-size: 18px;height: 200px;width: 500px;margin-top: 52px;margin-left: 50px"></textarea>
+    <em><p style="height:50px;color: black; font-size: 20px;margin-left: 62px;margin-top: 52px;width: fit-content">输入格式为：x y 操作,操作为浇水，施肥，虫害情况勘察，<br> 农作物生长状态勘察四者之一。举例：”5 9 浇水“</p></em>
+    <button style="margin-top: 290px;margin-left: 250px" class="search-button" id="submitButton">提交</button>
+    <button style="margin-top: 290px;margin-left: 390px" class="new-buttonNew" id="backButton">返回</button>
+</div>
+<script>
+    document.getElementById("submitButton").addEventListener("click", function () {
+        const textInput = document.getElementById("myInput").value;
+        const userID = sessionStorage.getItem('userId');
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/UVASystem_war_exploded/submitTask-servlet', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+        xhr.send(`textInput=${textInput}&userID=${userID}`);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const responseTest=JSON.parse(xhr.responseText);
+                alert(responseTest.message);
+            }
+        };
+    });
+    document.getElementById("backButton").addEventListener("click", function () {
+        window.location.href = 'taskList.html';
+    });
+</script>
+</body>
+</html>

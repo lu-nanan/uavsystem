@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <div class="leftNavbar-items">
+            <a href="taskList.html" class="leftNav-item">任务列表</a>
+            <a href="uavStatus.html" class="leftNav-item">无人机状态</a>
+            <a href="uavInformation.html" class="leftNav-item">无人机信息</a>
+            <a href="uavBreakdown.html" class="leftNav-item">无人机故障</a>
+            <a href="uavOm.html" class="leftNav-item">无人机运维</a>
+            <a href="TransMessage.html" class="leftNav-item">信息转传输</a>
+            <a href="mapInformation.html" class="leftNav-item">地图消息</a>
+            <a href="UavPathInfo.html" class="leftNav-item">路径规划</a>
+            <a href="dataCollection.html" class="leftNav-item">返回数据</a>
+            <a href="pitcureCollection.html" class="leftNav-item">返回图片</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">地图数据</p>
+    <canvas class="map-canvas" id="mapCanvas" style="margin-top: 100px"></canvas>
+</div>
+
+<script>
+    // 页面加载时自动发起获取地图数据请求
+    window.onload = function () {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', '/UVASystem_war_exploded/getMapData', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+
+                // 获取Canvas元素
+                const canvas = document.getElementById("mapCanvas");
+                const ctx = canvas.getContext("2d");
+
+                // 设置坐标系比例
+                const scaleX = canvas.width / 100;
+                const scaleY = canvas.height / 100;
+
+                // 遍历地图数据并在Canvas上绘制每个点
+                data.forEach(function (item) {
+                    // 根据 blockId 来选择点的颜色
+                    const color = getColorByBlockId(item.blockId);
+
+                    // 绘制每个点
+                    ctx.beginPath();
+                    ctx.arc(item.xCoordinate * scaleX, item.yCoordinate * scaleY, 5, 0, 2 * Math.PI);
+                    ctx.fillStyle = color;
+                    ctx.fill();
+                    ctx.closePath();
+                });
+                // blue
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("B", 6, 25);
+                // grey
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("K", 48, 20);
+                //green
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("C", 48, 50);
+                // red
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("A", 130, 50);
+                //浅蓝
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("I", 50, 125);
+                //yello
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("D", 200, 140);
+                //pink
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("G", 200, 90);
+                //purple
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("E", 250, 40);
+                // orange
+                ctx.font = "16px Arial";
+                ctx.fillStyle = "black";
+                ctx.fillText("F", 150, 20);
+
+            } else if (xhr.readyState === 4 && xhr.status !== 200) {
+                console.log("Error: " + xhr.statusText);
+                console.log("Status: " + xhr.status);
+            }
+        };
+    };
+
+    // 根据 blockId 返回不同颜色
+    function getColorByBlockId(blockId) {
+        switch (blockId) {
+            case 1001:
+                return 'red';
+            case 1002:
+                return 'blue';
+            case 1003:
+                return 'green';
+            case 1004:
+                return 'yellow';
+            case 1005:
+                return 'purple';
+            case 1006:
+                return 'orange';
+            case 1007:
+                return 'pink';
+            case 1008:
+                return 'brown';
+            case 1009:
+                return 'cyan';
+            case 1010:
+                return 'magenta';
+            case 1011:
+                return 'gray';
+            default:
+                return 'black'; // 默认颜色
+        }
+    }
+</script>
+
+</body>
+
+</html>

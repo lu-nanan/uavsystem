@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="taskList.html" class="leftNav-item">任务列表</a>
+            <a href="uavStatus.html" class="leftNav-item">无人机状态</a>
+            <a href="uavInformation.html" class="leftNav-item">无人机信息</a>
+            <a href="uavBreakdown.html" class="leftNav-item">无人机故障</a>
+            <a href="uavOm.html" class="leftNav-item">无人机运维</a>
+            <a href="TransMessage.html" class="leftNav-item">信息转传输</a>
+            <a href="mapInformation.html" class="leftNav-item">地图消息</a>
+            <a href="UavPathInfo.html" class="leftNav-item">路径规划</a>
+            <a href="dataCollection.html" class="leftNav-item">返回数据</a>
+            <a href="pitcureCollection.html" class="leftNav-item">返回图片</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">任务列表</p>
+</div>
+<div class="form-container">
+    <div class="rowOne-container">
+        <select class="dropdown-selector" id="searchOption">
+            <option value="dispatcher">下达人</option>
+            <option value="carryOutUav">执行任务无人机</option>
+            <option value="taskContent">任务内容</option>
+            <option value="taskStatus">任务状态</option>
+            <!--            <option value="assignTime">下达时间</option>-->
+        </select>
+        <input style="height: 28px" type="text" id="searchInput" placeholder="请输入">
+        <button  class="search-button" id="searchButton">查询</button>
+        <button  class="new-button" id="newButton">+新建</button>
+    </div>
+    <script>  //  任务列表查询
+    document.getElementById("searchButton").addEventListener("click",function () {
+        const searchInput = document.getElementById("searchInput").value;
+        const searchOption = document.getElementById("searchOption").value;
+        const xhr = new XMLHttpRequest();  //  使用 AJAX 从 Servlet 获取数据并填充表格
+        xhr.open('GET', `/UVASystem_war_exploded/SearchtaskList-servlet?searchInput=${searchInput}&searchOption=${searchOption}`, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const paginationElement = document.getElementById("pagination");
+                if (paginationElement) {
+                    paginationElement.remove();
+                }
+                const flowContainer = document.getElementById('flowContainer');
+                flowContainer.style.overflow = 'auto';
+                flowContainer.style.maxHeight = '400px';
+                const responseTexts = JSON.parse(xhr.responseText);
+                const tbody = document.getElementById('dataBody');
+                tbody.innerHTML= "";
+                responseTexts.forEach(responseText => {
+                    const row = tbody.insertRow();
+                    const idCell = row.insertCell(0);
+                    const assignTimeCell = row.insertCell(1);
+                    const dispatcherCell = row.insertCell(2);
+                    const taskContentCell = row.insertCell(3)
+                    const taskStatusCell = row.insertCell(4);
+                    const cell6 = row.insertCell(5);
+                    const operateCell = row.insertCell(6);
+                    idCell.textContent = responseText.id;
+                    assignTimeCell.textContent = responseText.dispatcher;
+                    dispatcherCell.textContent = responseText.carryOutUav;
+                    taskContentCell.textContent = responseText.textContent;
+                    taskStatusCell.textContent = responseText.taskStatus;
+                    cell6.textContent = responseText.assignTime;
+
+                    const deleteLink = document.createElement('a');
+                    deleteLink.href = `/UVASystem_war_exploded/taskDel-servlet?id=${responseText.id}`;
+                    deleteLink.textContent = '删除';
+                    const deleteButton = document.createElement('button');
+                    deleteButton.style.backgroundColor = '#BD3124';
+                    deleteButton.style.border = 'none';
+                    deleteButton.style.borderRadius = '5px';
+                    deleteLink.style.color = 'white';
+                    deleteLink.style.textDecoration = 'none';
+                    deleteButton.appendChild(deleteLink);
+                    let actionLink, actionButton, actionText;
+                    if (responseText.taskStatus === "进行中") {
+                        actionText = "暂停";
+                        actionLink = document.createElement('a');
+                        actionLink.href = `/UVASystem_war_exploded/taskStop-servlet?id=${responseText.id}`;
+                    } else if (responseText.taskStatus === "已停止") {
+                        actionText = "继续";
+                        actionLink = document.createElement('a');
+                        actionLink.href = `/UVASystem_war_exploded/taskResume-servlet?id=${responseText.id}`;  // 假设存在对应的继续任务的Servlet，需根据实际调整
+                    } else {
+                        actionText = "---";
+                        actionLink = document.createElement('a');
+                        actionLink.href="#";
+                    }
+                    actionButton = document.createElement('button');
+                    actionButton.style.margin = "5px";
+                    actionButton.style.backgroundColor = '#bd5a24';
+                    actionButton.style.border = 'none';
+                    actionButton.style.borderRadius = '5px';
+                    actionLink.style.color = 'white';
+                    actionLink.style.textDecoration = 'none';
+                    actionButton.appendChild(actionLink);
+                    actionLink.textContent = actionText;
+
+                    operateCell.appendChild(actionButton);
+                    operateCell.appendChild(deleteButton);
+
+
+                    // const deleteLink = document.createElement('a');
+                    // deleteLink.href = `/UVASystem_war_exploded/taskDel-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                    // deleteLink.textContent = '删除';
+                    // const deleteButton = document.createElement('button');
+                    // deleteButton.style.backgroundColor ='#BD3124';
+                    // deleteButton.style.border = 'none';
+                    // deleteButton.style.borderRadius = '5px';
+                    // deleteLink.style.color = 'white';
+                    // deleteLink.style.textDecoration = 'none';
+                    // deleteButton.appendChild(deleteLink);
+                    // const stopLink = document.createElement('a');
+                    // stopLink.href = `/UVASystem_war_exploded/taskStop-servlet?id=${responseText.id}`; // 调用处理暂停的 Servlet
+                    // stopLink.textContent = '暂停';
+                    // const stopButton = document.createElement('button');
+                    // stopButton.style.margin = "5px"
+                    // stopButton.style.backgroundColor ='rgba(189,156,36,0.76)';
+                    // stopButton.style.border = 'none';
+                    // stopButton.style.borderRadius = '5px';
+                    // stopLink.style.color = 'white';
+                    // stopLink.style.textDecoration = 'none';
+                    // stopButton.appendChild(stopLink);
+                    // operateCell.appendChild(stopButton);
+                    // operateCell.appendChild(deleteButton);
+                });
+            }
+        };
+    });
+    </script>
+    <script>
+        document.getElementById("newButton").addEventListener("click", function () {
+            window.location.href="submitTask.html";
+        });
+    </script>
+    <div id="flowContainer">
+        <table class="myTable">
+            <thead>
+            <tr>
+                <th style="padding: 5px">ID</th>
+                <th style="padding: 5px">下达人</th>
+                <th style="padding: 5px">执行任务无人机</th>
+                <th style="padding: 5px">任务内容</th>
+                <th style="padding: 5px">任务状态</th>
+                <th style="padding: 5px">下达时间</th>
+                <th style="padding: 5px;width: 150px;">操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataBody">
+            </tbody>
+        </table>
+    </div>
+    <script>  // 设置请求头，指定发送的数据为JSON格式
+    window.onload=function (){
+        const page="1";
+        const xhr = new XMLHttpRequest();  //  使用 AJAX 从 Servlet 获取数据并填充表格
+        xhr.open('GET', `/UVASystem_war_exploded/taskList-servlet?page=${page}`, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+        xhr.send();
+        handleAjaxResponse(xhr);
+    }
+    </script>
+    <div class="pagination" id="pagination"></div>
+    <script>
+        let currentPage = 1;
+        // 生成分页链接函数，优化活动页切换逻辑
+        function generatePagination() {
+            totalPages = sessionStorage.getItem("totalPages");
+            const pagination = document.querySelector('.pagination');
+            // 清空现有的分页链接
+            pagination.innerHTML = '';
+            let startPage;
+            let endPage;
+            if(totalPages < 5) {
+                startPage = 1;
+                endPage = totalPages;
+            }
+            else {
+                startPage = Math.max(currentPage-2,1);
+                if(currentPage < 3) {
+                    endPage = 5;
+                }
+                else {
+                    endPage = Math.min(totalPages,currentPage+2);
+                }
+            }
+            // 生成“上一页”链接
+            const prevLink = document.createElement('a');
+            prevLink.href = '#';
+            prevLink.textContent = `<`;
+            prevLink.classList.add('prev');
+            if (currentPage === 1) {
+                prevLink.disabled = true;
+            } else {
+                prevLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage--;
+                    handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                    generatePagination();
+                });
+            }
+            pagination.appendChild(prevLink);
+            // 生成分页链接
+            for (let i = startPage; i <= endPage; i++) {
+                const pageLink = document.createElement('a');
+                pageLink.href = '#';
+                pageLink.textContent = i;
+                pageLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    currentPage = i;
+                    handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                    generatePagination();
+                });
+                if (i === currentPage) {
+                    pageLink.classList.add("active");
+                }
+                pageLink.classList.add("page");
+                pagination.appendChild(pageLink);
+            }
+            // 生成“下一页”链接
+            const nextLink = document.createElement('a');
+            nextLink.href = '#';
+            nextLink.textContent = '>';
+            nextLink.classList.add('next');
+            if (currentPage === parseInt(totalPages)) {
+                nextLink.disabled = true;
+            } else {
+                nextLink.addEventListener('click', function (e) {
+                    console.log(totalPages);
+                    e.preventDefault();
+                    console.log("error");
+                    currentPage++;
+                    handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                    generatePagination();
+                });
+            }
+            pagination.appendChild(nextLink);
+        }
+        function handleAjaxRequest(page) {
+            const xhr = new XMLHttpRequest();  //  使用 AJAX 从 Servlet 获取数据并填充表格
+            xhr.open('GET', `/UVASystem_war_exploded/taskList-servlet?page=${page}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+            xhr.send();
+            handleAjaxResponse(xhr);
+        }
+        function handleAjaxResponse(xhr) {
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTexts = JSON.parse(xhr.responseText);
+                    const tbody = document.getElementById('dataBody');
+                    let totalPages;
+                    if (responseTexts.length > 0) {
+                        totalPages = responseTexts[0].totalPages;
+                    } else {
+                        totalPages = 0;
+                    }
+                    sessionStorage.setItem("totalPages",totalPages);
+                    generatePagination();
+                    tbody.innerHTML="";
+                    responseTexts.forEach(responseText => {
+                        const row = tbody.insertRow();
+                        const idCell = row.insertCell(0);
+                        const assignTimeCell = row.insertCell(1);
+                        const dispatcherCell = row.insertCell(2);
+                        const taskContentCell = row.insertCell(3)
+                        const taskStatusCell = row.insertCell(4);
+                        const cell6 = row.insertCell(5);
+                        const operateCell = row.insertCell(6);
+                        idCell.textContent = responseText.id;
+                        assignTimeCell.textContent = responseText.dispatcher;
+                        dispatcherCell.textContent = responseText.carryOutUav;
+                        taskContentCell.textContent = responseText.textContent;
+                        taskStatusCell.textContent = responseText.taskStatus;
+                        cell6.textContent = responseText.assignTime;
+
+
+                        const deleteLink = document.createElement('a');
+                        deleteLink.href = `/UVASystem_war_exploded/taskDel-servlet?id=${responseText.id}`;
+                        deleteLink.textContent = '删除';
+                        const deleteButton = document.createElement('button');
+                        deleteButton.style.backgroundColor = '#BD3124';
+                        deleteButton.style.border = 'none';
+                        deleteButton.style.borderRadius = '5px';
+                        deleteLink.style.color = 'white';
+                        deleteLink.style.textDecoration = 'none';
+                        deleteButton.appendChild(deleteLink);
+                        let actionLink, actionButton, actionText;
+                        if (responseText.taskStatus === "进行中") {
+                            actionText = "暂停";
+                            actionLink = document.createElement('a');
+                            actionLink.href = `/UVASystem_war_exploded/taskStop-servlet?id=${responseText.id}`;
+                        } else if (responseText.taskStatus === "已停止") {
+                            actionText = "继续";
+                            actionLink = document.createElement('a');
+                            actionLink.href = `/UVASystem_war_exploded/taskResume-servlet?id=${responseText.id}`;  // 假设存在对应的继续任务的Servlet，需根据实际调整
+                        } else {
+                            actionText = "";
+                            actionLink = document.createElement('a');
+                        }
+                        actionLink.textContent = actionText;
+                        actionButton = document.createElement('button');
+                        actionButton.style.margin = "5px";
+                        actionButton.style.backgroundColor = '#bd5a24';
+                        actionButton.style.border = 'none';
+                        actionButton.style.borderRadius = '5px';
+                        actionLink.style.color = 'white';
+                        actionLink.style.textDecoration = 'none';
+                        actionButton.appendChild(actionLink);
+                        actionLink.textContent = actionText;
+
+                        operateCell.appendChild(actionButton);
+                        operateCell.appendChild(deleteButton);
+                        // const deleteLink = document.createElement('a');
+                        // deleteLink.href = `/UVASystem_war_exploded/taskDel-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                        // deleteLink.textContent = '删除';
+                        // const deleteButton = document.createElement('button');
+                        // deleteButton.style.backgroundColor ='#BD3124';
+                        // deleteButton.style.border = 'none';
+                        // deleteButton.style.borderRadius = '5px';
+                        // deleteLink.style.color = 'white';
+                        // deleteLink.style.textDecoration = 'none';
+                        // deleteButton.appendChild(deleteLink);
+                        // const stopLink = document.createElement('a');
+                        // stopLink.href = `/UVASystem_war_exploded/taskStop-servlet?id=${responseText.id}`; // 调用处理暂停的 Servlet
+                        // stopLink.textContent = '暂停';
+                        // const stopButton = document.createElement('button');
+                        // stopButton.style.margin = "5px"
+                        // stopButton.style.backgroundColor ='#bd5a24';
+                        // stopButton.style.border = 'none';
+                        // stopButton.style.borderRadius = '5px';
+                        // stopLink.style.color = 'white';
+                        // stopLink.style.textDecoration = 'none';
+                        // stopButton.appendChild(stopLink);
+                        // operateCell.appendChild(stopButton);
+                        // operateCell.appendChild(deleteButton);
+                    });
+                }
+            };
+        }
+    </script>
+</div>
+</body>
+</html>

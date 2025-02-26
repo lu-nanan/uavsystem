@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<style>
+    /* 整体容器样式 */
+    .image-container {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        /* 4列，每列等宽 */
+        gap: 10px;
+        /* 列间距 */
+    }
+
+    /* 图片样式 */
+    .image-container img {
+        width: 200px;
+        height: 150px;
+        object-fit: cover;
+    }
+
+    /* 图片信息表格样式 */
+    .image-info-table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    .image-info-table th,
+    .image-info-table td {
+        border: 1px solid #ccc;
+        padding: 5px;
+    }
+</style>
+<div class="image - container"></div>
+<script>
+    window.onload=function () {
+        const xhr = new XMLHttpRequest();
+        let page=1;
+        xhr.open('GET', `/UVASystem_war_exploded/pictureCollection-servlet?page=${page}`, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const data = JSON.parse(xhr.responseText);
+                const imageContainer = document.querySelector('.image-container');
+                const images = data.images;
+                const infos = data.infos;
+                images.forEach((imageSrc, index) => {
+                    // 创建图片元素
+                    const img = document.createElement('img');
+                    img.src = imageSrc;
+                    // 将图片添加到容器中
+                    imageContainer.appendChild(img);
+                    // 创建图片信息表格
+                    const table = document.createElement('table');
+                    table.classList.add('image-info-table');
+                    // 创建表头
+                    const headerRow = document.createElement('tr');
+                    const header1 = document.createElement('th');
+                    header1.textContent = '信息1';
+                    const header2 = document.createElement('th');
+                    header2.textContent = '信息2';
+                    // 根据实际信息列数添加更多表头
+                    headerRow.appendChild(header1);
+                    headerRow.appendChild(header2);
+                    table.appendChild(headerRow);
+                    // 创建数据行
+                    const dataRow = document.createElement('tr');
+                    const cell1 = document.createElement('td');
+                    cell1.textContent = infos[index].info1;
+                    const cell2 = document.createElement('td');
+                    cell2.textContent = infos[index].info2;
+                    // 根据实际信息列数添加更多单元格
+                    dataRow.appendChild(cell1);
+                    dataRow.appendChild(cell2);
+                    table.appendChild(dataRow);
+                    // 将表格添加到图片下方
+                    imageContainer.appendChild(table);
+                });
+            }
+                }
+        };
+
+</script>
+</body>
+</html>

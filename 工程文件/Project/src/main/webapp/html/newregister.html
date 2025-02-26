@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>无人机系统</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <style>
+
+        .login-Nav-item {
+            /*background-color: #7aa2d4;*/
+            color: #0F40F5;
+            padding: 10px; /* 添加内边距 */
+            border-radius: 5px; /* 添加圆角效果 */
+            display: inline-block; /* 使div根据内容自适应宽度 */
+        }
+
+        .login-tile-container {
+            position: absolute;
+            top: 180px; /* 距离上方导航栏100px，可以根据实际情况调整 */
+            left: 30%;
+            right: 30%;
+            text-align: center;
+            height: 9.259%; /* 设置容器高度，可按需修改 */
+            width: 40%;
+            background-color: white; /* 设置容器背景色，可按需修改 */
+            padding: 2px 2px 2px 2px; /* 设置容器内边距，可按需修改*/
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .login-container {
+            left: 30%;
+            right: 30%;
+            width: 60%;
+            margin: 55px auto;
+            padding: 20px;
+            /*border: 1px solid #ccc;*/
+            /*border-radius: 5px;*/
+            /*background-color: #fff;*/
+            text-align: center;
+        }
+
+        .longin-label {
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+
+        .new-login-input {
+            display: inline-block;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            margin-bottom: 10px;
+        }
+
+        .login-btn{
+            width: 100px;
+            font-size: 20px;
+            padding: 10px;
+            background-color: #140175;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            margin-right: 55px;
+        }
+
+        .register-btn {
+            background-color: #6c757d;
+        }
+
+        .newform-container{
+            top: 45px;
+            line-height:3;
+        }
+
+        .account-label{
+            font-size: 30px;
+            color: #39298a;
+            margin-right: 55px;
+            background-color: white;
+            padding: 2px 25px;
+            border-radius: 3px;
+        }
+
+        .login-input{
+            width: 200px;
+            height: 30px;
+        }
+
+        .register-link{
+            font-size: 20px;
+            text-decoration: underline; /* 添加下划线 */
+            color: white;
+        }
+
+        .bottom-container {
+            display: flex;
+            width: 100%;
+            height: 100px;
+            background-color: #000a7b;
+            position: absolute;
+        }
+
+        .loginleftNavbar-container {
+            background-color: white ;
+            width: 15%;
+            overflow: hidden;
+            height:80vh;
+            display: flex;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .rform-container{
+            top: 45px;
+            line-height:1.9;
+        }
+
+        .register-btn{
+            top: 100px;
+            width: 100px;
+            font-size: 20px;
+            padding: 10px;
+            background-color: #140175;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+
+        .regist-label{
+            font-size: 28px;
+            color: #39298a;
+            margin-right: 55px;
+            background-color: white;
+            padding: 2px 30px;
+            border-radius: 3px;
+        }
+
+        .regist-input{
+            width: 200px;
+            height: 28px;
+        }
+    </style>
+</head>
+<body style="background-image: url('image/img.png'); background-size:cover; background-repeat: no-repeat;">
+
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;"><strong>对抗环境下无人机群动态任务协助与迁移系统</strong></p>
+            </div>
+        </div>
+    </div>
+    <div class="loginleftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a class="login-Nav-item"><strong>用户注册</strong></a>
+        </div>
+    </div>
+</div>
+<div class="login-tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;margin-right: 62px;"><strong>账号注册</strong></p>
+    <div class="login-container" id="login-container">
+        <form class="rform-container" action="">
+            <label for="phone" class="regist-label">手机</label>
+            <input class="regist-input" type="text" id="phone" placeholder="请输入手机号"><br>
+            <label for="id" class="regist-label">邮箱</label>
+            <input class="regist-input" type="text" id="email" placeholder="请输入邮箱">
+            <p class="register-link">
+                <a id="sendCode" href="#"><strong>输入邮箱后点此获取验证码</strong></a>
+            </p>
+            <label for="id" class="regist-label">验证</label>
+            <input class="regist-input" type="text" id="id" placeholder="请输入验证码"><br>
+            <label for="password" class="regist-label">密码</label>
+            <input class="regist-input" type="password" id="password" placeholder="请输入密码"><br>
+            <label for="password" class="regist-label">确认</label>
+            <input class="regist-input" type="password" id="configer" placeholder="请再次输入密码"><br><br>
+        </form>
+        <button class="register-btn" id="register-button">注册</button>
+        <button class="login-btn" id="back">返回</button>
+    </div>
+</div>
+<div class="bottom-container" id="bottom-container">
+    <p>     </p>
+</div>
+
+<script>
+    window.onload=function () {
+        document.getElementById("back").addEventListener("click",function () {
+            window.location.href = "newLog.html";
+        })
+        document.getElementById("register-button").addEventListener("click",function register () {
+            const email = document.getElementById('email').value;
+            const telephone=document.getElementById('phone').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('configer').value;
+            const verifCode = document.getElementById('id').value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/register-servlet', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`email=${email}&telephone=${telephone}&password=${password}&confirmPassword=${confirmPassword}&verifCode=${verifCode}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.responseText);
+                    alert(responseTest.message);
+                }
+            };
+        });
+        document.getElementById("sendCode").addEventListener("click",function sendVerifCode () {
+            const telephone=document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const xhr = new XMLHttpRequest();
+            xhr.open('POST', '/UVASystem_war_exploded/sendVerifCode-servlet', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send(`email=${email}&telephone=${telephone}`);
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTest = JSON.parse(xhr.responseText);
+                    alert(responseTest.message);
+                }
+            };
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.DeviceErrorMapper">
+    <resultMap id="DErrorResultMap" type="com.hnu.entity.DeviceError">
+        <result property="errorid" column="故障记录ID"/>
+        <result property="deviceid" column="无人机"/>
+        <result property="time" column="故障时间"/>
+        <result property="istorepair" column="是否送修"/>
+    </resultMap>
+    <!-- 定义查询所有无人机的 SQL 语句-->
+    <select id="findAllDeviceErrors" resultMap="DErrorResultMap" >
+        SELECT * FROM 无人机故障记录;
+    </select>
+
+    <!-- 定义根据单个ID 查询无人机的 SQL 语句-->
+    <select id="findDeviceErrorByDId" parameterType="int" resultMap="DErrorResultMap">
+        SELECT * FROM 无人机故障记录 WHERE 无人机 = #{deviceid};
+    </select>
+    <select id="findDeviceActionByEID" parameterType="int" resultMap="DErrorResultMap">
+        SELECT * FROM 无人机故障记录 WHERE 故障记录ID= #{errorid};
+    </select>
+    <select id="findDeviceErrorBytime" parameterType="Date" resultMap="DErrorResultMap">
+        SELECT * FROM 无人机故障记录 WHERE 故障时间= #{time};
+    </select>
+    <select id="findDeviceErrorByRepair" parameterType="int" resultMap="DErrorResultMap">
+        SELECT * FROM 无人机故障记录 WHERE 是否送修= #{istorepair};
+    </select>
+    <!-- 定义新增无人机的 SQL 语句-->
+    <insert id="addDeviceError" parameterType="com.hnu.entity.DeviceError" useGeneratedKeys="true" keyColumn="故障记录ID" keyProperty="errorid">
+        INSERT INTO 无人机故障记录(无人机,故障时间,是否送修) VALUES (#{deviceid}, #{time}, #{istorepair});
+    </insert>
+
+    <!-- 定义根据无人机ID删除无人机的 SQL 语句-->
+    <delete id="deleteDeviceErrorByEId" parameterType="int" >
+        DELETE FROM 无人机故障记录 WHERE 故障记录ID=#{errorid};
+    </delete>
+    <delete id="deleteDeviceErrorByDId" parameterType="int" >
+        DELETE FROM 无人机故障记录 WHERE 无人机=#{deviceid};
+    </delete>
+    <update id="updateErrorByEId" parameterType="map" >
+        UPDATE 无人机故障记录 SET 是否送修= #{istorepair} WHERE 故障记录ID= #{errorid};
+    </update>
+
+</mapper>
+

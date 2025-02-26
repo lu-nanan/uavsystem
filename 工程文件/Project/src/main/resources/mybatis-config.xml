@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+    <settings>
+        <setting name="cacheEnabled" value="false"/>
+    </settings>
+    <!-- 数据库连接相关 -->
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="JDBC"/>
+            <!-- 配置数据源，注意这里要配置自己的数据库驱动和连接参数 -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <property name="url" value="jdbc:mysql://localhost:3306/uavdb"/>
+                <property name="username" value="cyx1"/>
+                <property name="password" value="Cyxxyy17"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!-- 映射器 -->
+    <mappers>
+        <!-- 引入映射文件，如果有多个文件，则在此处添加 -->
+        <mapper resource="UserMapper.xml"/>
+        <mapper resource="DeviceInfoMapper.xml"></mapper>
+        <mapper resource="DeviceStateMapper.xml"></mapper>
+        <mapper resource="FeedBackMapper.xml"></mapper>
+        <mapper resource="TaskMapper.xml"></mapper>
+        <mapper resource="DataCollectionMapper.xml"></mapper>
+        <mapper resource="HistoryMapper.xml"></mapper>
+        <mapper resource="DeviceTaskMapper.xml"></mapper>
+        <mapper resource="LogMapper.xml"></mapper>
+        <mapper resource="BlackUserMapper.xml"></mapper>
+        <mapper resource="DeviceErrorMapper.xml"></mapper>
+        <mapper resource="DeviceRepairMapper.xml"></mapper>
+        <mapper resource="TransMessageMapper.xml"></mapper>
+        <mapper resource="PictureCollectionMapper.xml"></mapper>
+        <mapper resource="MapDataMapper.xml"></mapper>
+        <mapper resource="UavPathInfoMapper.xml"></mapper>
+
+
+    </mappers>
+
+</configuration>
+
+
+

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.TransMassageMapper">
+    <resultMap id="TransResultMap" type="com.hnu.entity.TransMessage">
+        <result property="transId" column="转传输ID"/>
+        <result property="send" column="发送方"/>
+        <result property="trans" column="转送方"/>
+        <result property="date" column="时间"/>
+        <result property="isSuccess" column="是否成功传送给中心"/>
+    </resultMap>
+
+
+    <!-- 定义查询所有无人机的 SQL 语句-->
+    <select id="findTAllTrans" resultMap="TransResultMap">
+        SELECT * FROM 信息转传输情况表;
+    </select>
+
+    <!-- 定义根据单个ID 查询无人机的 SQL 语句-->
+    <select id="findTransByTId" parameterType="int" resultMap="TransResultMap">
+        SELECT * FROM 信息转传输情况表 WHERE 转传输ID = #{transId};
+    </select>
+    <select id="findTransBySend" parameterType="int" resultMap="TransResultMap">
+        SELECT * FROM 信息转传输情况表 WHERE 发送方= #{send};
+    </select>
+    <select id="findTransByTrans" parameterType="int" resultMap="TransResultMap">
+        SELECT * FROM 信息转传输情况表 WHERE 转送方= #{trans};
+    </select>
+    <select id="findTransByDate" parameterType="Date" resultMap="TransResultMap">
+        SELECT * FROM 信息转传输情况表 WHERE 时间= #{time};
+    </select>
+    <select id="findTransBySuccess" parameterType="int" resultMap="TransResultMap">
+        SELECT * FROM 信息转传输情况表 WHERE 是否成功传送给中心= #{isSuccess};
+    </select>
+    <!-- 定义新增无人机的 SQL 语句-->
+    <insert id="addTrans" parameterType="com.hnu.entity.TransMessage" useGeneratedKeys="true" keyColumn="转传输ID" keyProperty="transId">
+        INSERT INTO 信息转传输情况表(发送方,转送方,时间,是否成功传送给中心) VALUES (#{send}, #{trans}, #{time}, #{isSuccess});
+    </insert>
+
+
+    <!-- 定义根据无人机ID删除无人机的 SQL 语句-->
+    <delete id="deleteTransByTid" parameterType="int" >
+        DELETE FROM 信息转传输情况表 WHERE 转传输ID=#{tansId};
+    </delete>
+    <update id="updateTransByTId">
+        UPDATE 信息转传输情况表 SET 是否成功传送给中心 = #{isSuccess} WHERE 转传输ID = #{transId};
+    </update>
+
+</mapper>
+

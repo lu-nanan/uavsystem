@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.DataCollectionMapper">
+    <resultMap id="DataCollectionMap" type="com.hnu.entity.DataCollection">
+        <result property="dataId" column="返回文本ID"/>
+        <result property="uavId" column="无人机ID"/>
+        <result property="content" column="文本内容"/>
+        <result property="returnTime" column="返回时间"/>
+    </resultMap>
+    <!-- 定义查询所有用户反馈的 SQL 语句-->
+    <select id="findAllData" resultMap="DataCollectionMap">
+        SELECT * FROM 无人机返回文本数据表 order by 返回时间 DESC;
+    </select>
+    <!-- 定义根据用户 ID 查询用户反馈的 SQL 语句-->
+    <select id="findDataById" parameterType="int" resultMap="DataCollectionMap">
+        SELECT * FROM 无人机返回文本数据表 WHERE 返回文本ID = #{dataId};
+    </select>
+    <select id="findDataByUavId" parameterType="int" resultMap="DataCollectionMap">
+        SELECT * FROM 无人机返回文本数据表 WHERE 无人机ID = #{uavId};
+    </select>
+    <select id="findDataByTime" parameterType="Date" resultMap="DataCollectionMap">
+        SELECT * FROM 无人机返回文本数据表 WHERE 返回时间 = #{returnTime};
+    </select>
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addData" parameterType="com.hnu.entity.DataCollection" useGeneratedKeys="true" keyColumn="返回文本ID" keyProperty="dataId">
+        INSERT INTO 无人机返回文本数据表 (返回文本ID,无人机ID,文本内容,返回时间) VALUES (#{dataId}, #{uavId}, #{content}, #{returnTime});
+    </insert>
+    <!-- 定义根据用户 ID 删除用户的 SQL 语句-->
+    <delete id="deleteDataById" parameterType="int" >
+        DELETE FROM 无人机返回文本数据表 WHERE 返回文本ID = #{DataId};
+    </delete>
+</mapper>

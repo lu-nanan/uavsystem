@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.DeviceInfoMapper">
+    <resultMap id="DinfoResultMap" type="com.hnu.entity.DeviceInfo">
+        <result property="id" column="无人机ID"/>
+        <result property="type" column="型号"/>
+        <result property="productor" column="生产商"/>
+        <result property="battery" column="续航"/>
+        <result property="distance" column="图传距离"/>
+        <result property="buytime" column="购买时间"/>
+    </resultMap>
+
+
+    <!-- 定义查询所有无人机的 SQL 语句-->
+    <select id="findAllDevices" resultMap="DinfoResultMap">
+        SELECT * FROM 无人机信息 order by 购买时间 DESC ;
+    </select>
+
+    <!-- 定义根据单个ID 查询无人机的 SQL 语句-->
+    <select id="findDeviceById" parameterType="int" resultMap="DinfoResultMap">
+        SELECT * FROM 无人机信息 WHERE 无人机ID = #{id};
+    </select>
+    <select id="findDeviceByType" parameterType="String" resultMap="DinfoResultMap">
+        SELECT * FROM 无人机信息 WHERE 型号= #{type};
+    </select>
+
+    <select id="findDeviceByProductor" parameterType="String" resultMap="DinfoResultMap">
+        SELECT * FROM 无人机信息 WHERE 生产商= #{productor};
+    </select>
+    <!-- 定义新增无人机的 SQL 语句-->
+    <insert id="addDevice" parameterType="com.hnu.entity.DeviceInfo" useGeneratedKeys="true" keyColumn="无人机ID" keyProperty="id">
+        INSERT INTO 无人机信息(型号,生产商,续航,图传距离,购买时间) VALUES (#{type}, #{productor}, #{battery}, #{distance}, #{buytime});
+    </insert>
+
+    <!-- 定义根据无人机ID删除无人机的 SQL 语句-->
+    <delete id="deleteDeviceById" parameterType="int" >
+        DELETE FROM 无人机信息 WHERE 无人机ID=#{id};
+    </delete>
+    <select id="selectAvailableDroneIds" resultType="java.lang.Integer">
+        SELECT
+            ui.无人机ID as "无人机ID"
+        FROM
+            无人机信息 ui
+                -- 使用 LEFT JOIN 连接无人机任务表和任务信息表，判断任务关联及状态
+                LEFT JOIN 无人机任务表 ut ON ui.无人机ID = ut.无人机
+                LEFT JOIN 任务信息表 ti ON ut.任务ID = ti.任务ID
+        WHERE
+            ti.任务状态 IS NULL OR ti.任务状态!= '任务中'
+        GROUP BY
+            ui.无人机ID
+    </select>
+
+</mapper>
+

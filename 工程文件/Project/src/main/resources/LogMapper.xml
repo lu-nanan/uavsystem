@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.LogMapper">
+    <resultMap id="LogResultMap" type="com.hnu.entity.Log">
+        <result property="userId" column="用户ID"/>
+        <result property="date" column="时间"/>
+        <result property="level" column="级别"/>
+        <result property="resource" column="来源"/>
+        <result property="message" column="信息"/>
+        <result property="logId" column="日志ID"/>
+    </resultMap>
+
+    <select id="findAllLog" resultMap="LogResultMap">
+        SELECT * FROM 日志;
+    </select>
+    <!-- 定义根据用户 ID 查询用户反馈的 SQL 语句-->
+    <select id="findLogByUId" parameterType="int" resultMap="LogResultMap">
+        SELECT * FROM 日志 Where 用户ID = #{userId}
+    </select>
+
+    <select id="findLogByLID" parameterType="int" resultMap="LogResultMap">
+        SELECT * FROM 日志  WHERE 日志ID= #{logId};
+    </select>
+
+    <select id="findLogByLevel" parameterType="String" resultMap="LogResultMap">
+        SELECT * FROM 日志  WHERE 级别=#{level};
+    </select>
+    <select id="findLogByResource" parameterType="String" resultMap="LogResultMap">
+        SELECT * FROM 日志  WHERE 来源=#{resource};
+    </select>
+    <select id="findLogByMessage" parameterType="String" resultMap="LogResultMap">
+        SELECT * FROM 日志  WHERE 信息=#{message};
+    </select>
+    <select id="findLogByDate" parameterType="Date" resultMap="LogResultMap">
+        SELECT * FROM 日志  WHERE 时间=#{date};
+    </select>
+
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addLog" parameterType="com.hnu.entity.Log" useGeneratedKeys="true" keyColumn="日志ID" keyProperty="logId">
+        INSERT INTO 日志 (用户ID,时间,级别,来源,信息) VALUES (#{userId}, #{date}, #{level}, #{resource},#{content});
+    </insert>
+
+    <delete id="deleteLogByUId" parameterType="int" >
+        DELETE FROM 日志 WHERE 用户ID=#{userId};
+    </delete>
+
+    <delete id="deleteUserByLId" parameterType="int" >
+        DELETE FROM 日志 WHERE 日志ID=#{logId};
+    </delete>
+
+</mapper>

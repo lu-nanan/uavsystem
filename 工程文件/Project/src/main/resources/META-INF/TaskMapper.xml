@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.TaskInfoMapper">
+    <resultMap id="TaskInfoResultMap" type="com.hnu.entity.TaskInfo">
+        <result property="id" column="任务ID"/>
+        <result property="time" column="任务下达时间"/>
+        <result property="userid" column="用户ID"/>
+        <result property="content" column="任务内容"/>
+        <result property="taskstate" column="任务状态"/>
+    </resultMap>
+
+
+    <!-- 定义查询所有用户的 SQL 语句-->
+    <select id="findAllTaskInfo" resultMap="TaskInfoResultMap">
+        SELECT * FROM 任务信息表;
+    </select>
+
+    <!-- 定义根据用户 ID 查询用户的 SQL 语句-->
+    <select id="findTaskByUId" parameterType="int" resultMap="TaskInfoResultMap">
+        SELECT * FROM 任务信息表 WHERE 用户ID = #{userid};
+    </select>
+    <select id="findTaskByTid" parameterType="int" resultMap="TaskInfoResultMap">
+        SELECT * FROM 任务信息表 WHERE 任务ID= #{id};
+    </select>
+    <select id="findTaskByDate" parameterType="Date" resultMap="TaskInfoResultMap">
+        SELECT * FROM 任务信息表 WHERE 任务下达时间= #{time};
+    </select>
+
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addTask" parameterType="com.hnu.entity.TaskInfo" useGeneratedKeys="true" keyColumn="任务ID" keyProperty="id">
+        INSERT INTO 任务信息表(,任务ID,用户ID,任务下达时间,任务内容,任务状态) VALUES (#{id}, #{userid}, #{time}, #{taskstate});
+    </insert>
+
+    <!-- 定义根据用户 ID 删除用户的 SQL 语句-->
+    <delete id="deleteTaskByTId" parameterType="int" >
+        DELETE FROM 任务信息表 WHERE 任务ID=#{id};
+    </delete>
+
+    <!-- 定义根据用户 ID 更新用户密码的 SQL 语句-->
+    <update id="updateTaskStatByTId" parameterType="map">
+        UPDATE 任务信息表 SET 任务状态= #{taskstate} WHERE 任务ID = #{id};
+    </update>
+
+</mapper>
+

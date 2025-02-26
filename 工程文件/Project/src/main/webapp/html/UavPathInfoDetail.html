@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="taskList.html" class="leftNav-item">任务列表</a>
+            <a href="uavStatus.html" class="leftNav-item">无人机状态</a>
+            <a href="uavInformation.html" class="leftNav-item">无人机信息</a>
+            <a href="uavBreakdown.html" class="leftNav-item">无人机故障</a>
+            <a href="uavOm.html" class="leftNav-item">无人机运维</a>
+            <a href="TransMessage.html" class="leftNav-item">信息转传输</a>
+            <a href="mapInformation.html" class="leftNav-item">地图消息</a>
+            <a href="UavPathInfo.html" class="leftNav-item">路径规划</a>
+            <a href="dataCollection.html" class="leftNav-item">返回数据</a>
+            <a href="pitcureCollection.html" class="leftNav-item">返回图片</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">无人机路径信息</p>
+</div>
+<div class="form-container">
+    <table class="myTable">
+        <thead>
+        <tr>
+            <th>路径id</th>
+            <th>起点X</th>
+            <th>起点Y</th>
+            <th>终点X</th>
+            <th>终点Y</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="dataBody">
+        </tbody>
+    </table>
+    <script>
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r!= null) return unescape(r[2]);
+            return null;
+        }
+
+        var pathId = getUrlParam('pathId');
+
+        // 页面初始化
+        window.onload = function () {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', `/UVASystem_war_exploded/getUavPathInfoDetail?pathId=${pathId}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    console.log(pathId);
+                    const responseText = JSON.parse(xhr.responseText);
+                    const tbody = document.getElementById('dataBody');
+
+                    const row1 = tbody.insertRow();
+                    const idCell = row1.insertCell(0);
+                    const cell1 = row1.insertCell(1);
+                    const cell2 = row1.insertCell(2);
+                    const cell3 = row1.insertCell(3);
+                    const cell4 = row1.insertCell(4);
+                    const cell5 = row1.insertCell(5);
+                    idCell.textContent = responseText.pathId;
+                    cell1.textContent = responseText.startX;
+                    cell2.textContent = responseText.startY;
+                    cell3.textContent = responseText.endX;
+                    cell4.textContent = responseText.endY;
+                    const deleteLink = document.createElement('a');
+                    deleteLink.href = `/UVASystem_war_exploded/html/UavPathInfo.html`;
+                    deleteLink.textContent = '返回';
+                    const deleteButton = document.createElement('button');
+                    deleteButton.style.backgroundColor = '#BD3124';
+                    deleteButton.style.border = 'none';
+                    deleteButton.style.borderRadius = '5px';
+                    deleteLink.style.color = 'white';
+                    deleteLink.style.textDecoration = 'none';
+                    deleteButton.appendChild(deleteLink);
+                    cell5.appendChild(deleteButton);
+
+                    const row2 = tbody.insertRow();
+                    const detailCell = row2.insertCell(0);
+                    detailCell.colSpan = 6;  // 合并6列
+                    detailCell.textContent = responseText.path;
+                }
+            };
+        }
+    </script>
+</div>
+</body>
+
+</html>

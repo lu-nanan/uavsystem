@@ -1,0 +1,559 @@
+/*左侧导航栏***********************/
+.vertical.nav {
+    list-style-type: none;
+    padding-left: 0;
+    background-color: #333;
+    width: 150px;
+}
+.vertical-nav li {
+    border-bottom: 1px solid #ccc;
+}
+.vertical-nav li a {
+    text-decoration: none;
+    color: white;
+    display: block;
+    padding: 10px 15px;
+}
+.vertical.nav li a:hover {
+    background-color: #555;
+}
+/*顶部导航栏*********************/
+/* 整体导航栏样式 */
+.top-nav {
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+/* 导航栏中的文本样式 */
+.nav-text {
+    font-size: 18px;
+}
+
+/* 导航链接列表样式 */
+.nav-links {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+}
+
+/* 单个导航链接样式 */
+.nav-links li {
+    margin-left: 15px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    padding: 5px 10px;
+}
+
+.nav-links li a:hover {
+    background-color: #555;
+}
+/*页面灰色背景****************************/
+body {
+    background-color: #f4f4f4; /* 这里的#f4f4f4是一种常见的浅灰色十六进制颜色值 */
+}
+/*中部背景板***********************************/
+.white-panel {
+    background-color: white;
+    width: 300px; /* 设置宽度，可以根据实际需求调整 */
+    height: 200px; /* 设置高度，可以根据实际需求调整 */
+    margin: 50px auto; /* 上下外边距为50px，左右自动居中 */
+    padding: 20px; /* 在内部添加内边距，使文字与边缘有一定距离 */
+    box-sizing: border-box; /* 确保内边距和边框包含在设定的宽度和高度内 */
+}
+/*背景板*/
+.background-plate {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: #EFF0F2;
+    z-index: -1;
+}
+/*左上导航栏容器*/
+.navbar-container {
+    display: flex;
+    flex-direction: column; /* 使子元素垂直排列 */
+    height: 100%;
+}
+/* 顶部导航栏整体样式 */
+.topNavbar-container {
+    display: flex;
+    background-color: #000A7B ;
+    width: 100%;
+    height:11.85%;
+    top: 0;
+}
+
+/* 顶部导航栏内容容器样式，用于水平排列元素 */
+.topNavbar-content {
+    display: flex;
+    width: 100%;
+}
+
+/* 顶部文本框样式 */
+.topNavbar-content-paragraph {
+    color: white;
+    margin-top: 5px;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    text-align: center;
+    margin-left: 280px;
+}
+.topNavbarItems{
+    margin-top: 42px;
+    margin-left: auto;
+    text-decoration: none;
+    margin-right: 55px;
+}
+/* 顶部导航项样式 */
+.topNav-item {
+    color: white;
+    padding-left: 20px;
+    text-decoration: none;
+}
+/* 左侧导航栏整体样式 */
+.leftNavbar-container {
+    background-color: white ;
+    width: 15%;
+    overflow: hidden;
+    height:88.7vh;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* 左侧导航栏内容容器样式，用于垂直排列元素 */
+.leftNavbar-items {
+    display: flex;
+    flex-direction: column; /* 设置为垂直排列方向 */
+    align-items: flex-start; /* 左对齐（可根据需求调整为其他对齐方式，如center则为居中对齐等） */
+    width: 80%;
+    margin: 0 auto;
+}
+/* 左侧导航项样式 */
+.leftNav-item {
+    color: #0F40F5;
+    text-decoration: none;
+    margin-top: 10px;
+}
+/*标题容器*/
+.tile-container {
+    position: absolute;
+    top: 180px; /* 距离上方导航栏100px，可以根据实际情况调整 */
+    right: 0; /* 根据容器宽度调整，这里假设容器宽200px，使其紧靠右侧 */
+    width: 80.677%; /* 设置容器宽度，可按需修改 */
+    height: 9.259%; /* 设置容器高度，可按需修改 */
+    background-color: white; /* 设置容器背景色，可按需修改 */
+    border-radius: 20px 0 0 20px; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+    /*padding: 20px 20px 20px 20px; /* 设置容器内边距，可按需修改 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+}
+.form-container {
+    position: absolute;
+    bottom: 0; /* 距离页面底部0px，使其紧贴底部 */
+    right: 0; /* 距离页面右侧0px，使其紧贴右侧 */
+    width: 80.677%; /* 设置容器宽度，可按需修改 */
+    height: 68.05555%; /* 设置容器高度，可按需修改 */
+    background-color: white; /* 设置容器背景色，可按需修改 */
+    border-radius: 20px 0 0 0; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+    /*padding: 20px; /* 设置容器内边距，可按需修改 */
+    /* 添加阴影效果（可选） */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+.form-containerNew {
+    position: absolute;
+    bottom: 0; /* 距离页面底部0px，使其紧贴底部 */
+    right: 0; /* 距离页面右侧0px，使其紧贴右侧 */
+    width: 80.677%; /* 设置容器宽度，可按需修改 */
+    height: 68.05555%; /* 设置容器高度，可按需修改 */
+    background-color: white; /* 设置容器背景色，可按需修改 */
+    border-radius: 20px 0 0 0; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+    /*padding: 20px; /* 设置容器内边距，可按需修改 */
+    /* 添加阴影效果（可选） */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-start;
+}
+.form-containerNewAgain {
+    position: absolute;
+    bottom: 0; /* 距离页面底部0px，使其紧贴底部 */
+    right: 0; /* 距离页面右侧0px，使其紧贴右侧 */
+    width: 80.677%; /* 设置容器宽度，可按需修改 */
+    height: 68.05555%; /* 设置容器高度，可按需修改 */
+    background-color: white; /* 设置容器背景色，可按需修改 */
+    border-radius: 20px 0 0 0; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+    /*padding: 20px; /* 设置容器内边距，可按需修改 */
+    /* 添加阴影效果（可选） */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+.form-row {
+    display: flex;
+}
+.rowOne-container {
+    /*display: flex;*/
+    position: relative;
+    /*background-color: #6C757D;*/
+    width: 90%;
+    margin: 20px auto;
+}
+/* 下拉选择器整体样式 */
+.dropdown-selector {
+    width: 130px; /* 设置下拉选择器的宽度，可根据需求调整 */
+    padding: 10px; /* 设置内边距，使选项在选择器内有一定的空间 */
+    border: 1px solid #ccc; /* 设置边框样式 */
+    border-radius: 5px; /* 设置边框圆角效果 */
+    background-color: #f9f9f9; /* 设置背景颜色 */
+    margin-right: 10px;
+    /*appearance: none; /* 去除默认的下拉箭头样式（在部分浏览器有效） */
+    /*-webkit-appearance: none; /* 针对webkit浏览器去除默认下拉箭头样式 */
+    /*-moz-appearance: none; /* 针对mozilla浏览器去除默认下拉箭头样式 */
+    /* 添加自定义的下拉箭头图标（可根据喜好选择合适的图标方式，这里以使用伪元素为例） */
+    /*background-image: url('arrow-down-icon.png'); /* 替换为你实际的箭头图标路径 */
+    /*background-repeat: no-repeat;
+    background-position: right 10px center; /* 设置图标在选择器内的位置 */
+}
+.search-button {
+    padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+    border: none; /* 去除默认边框 */
+    border-radius: 5px; /* 设置边框圆角效果 */
+    background-color: #007BFF; /* 设置填充颜色为蓝色 */
+    color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+    font-family: Arial, sans-serif; /* 设置文本字体 */
+    font-size: 14px; /* 设置初始文本大小，可扩展 */
+    outline: none; /* 去除获得焦点时的默认轮廓线 */
+    position: absolute;
+    /* 以下属性用于实现大小可定制 */
+    width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+    height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+    margin-left: 12px;
+}
+/*按钮*/
+.new-button {
+    padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+    border: none; /* 去除默认边框 */
+    border-radius: 5px; /* 设置边框圆角效果 */
+    background-color: #BD3124; /* 设置填充颜色为蓝色 */
+    color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+    font-family: Arial, sans-serif; /* 设置文本字体 */
+    font-size: 14px; /* 设置初始文本大小，可扩展 */
+    outline: none; /* 去除获得焦点时的默认轮廓线 */
+    right: 0;
+    position: absolute;
+    /* 以下属性用于实现大小可定制 */
+    width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+    height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+}
+.new-button {
+    padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+    border: none; /* 去除默认边框 */
+    border-radius: 5px; /* 设置边框圆角效果 */
+    background-color: #BD3124; /* 设置填充颜色为蓝色 */
+    color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+    font-family: Arial, sans-serif; /* 设置文本字体 */
+    font-size: 14px; /* 设置初始文本大小，可扩展 */
+    outline: none; /* 去除获得焦点时的默认轮廓线 */
+    right: 0;
+    position: absolute;
+    /* 以下属性用于实现大小可定制 */
+    width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+    height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+}
+.new-buttonNew {
+    padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+    border: none; /* 去除默认边框 */
+    border-radius: 5px; /* 设置边框圆角效果 */
+    background-color: #BD3124; /* 设置填充颜色为蓝色 */
+    color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+    font-family: Arial, sans-serif; /* 设置文本字体 */
+    font-size: 14px; /* 设置初始文本大小，可扩展 */
+    outline: none; /* 去除获得焦点时的默认轮廓线 */
+    position: absolute;
+    /* 以下属性用于实现大小可定制 */
+    width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+    height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+    margin-left: 12px;
+}
+.table-button {
+    padding: 10px 20px; /* 设置初始内边距，可根据需求调整 */
+    border: none; /* 去除默认边框 */
+    border-radius: 5px; /* 设置边框圆角效果 */
+    background-color: #BD3124; /* 设置填充颜色为蓝色 */
+    color: white; /* 设置文本颜色为白色，与蓝色背景形成对比 */
+    cursor: pointer; /* 鼠标悬停时显示手型指针，提示可点击 */
+    font-family: Arial, sans-serif; /* 设置文本字体 */
+    font-size: 14px; /* 设置初始文本大小，可扩展 */
+    outline: none; /* 去除获得焦点时的默认轮廓线 */
+    right: 0;
+    position: absolute;
+    /* 以下属性用于实现大小可定制 */
+    width: auto; /* 按钮宽度根据内容自动调整，也可设置为具体像素值等进行固定宽度设置 */
+    height: auto; /* 按钮高度根据内容自动调整，也可设置为具体像素值等进行固定高度设置 */
+}
+/* 表格整体样式 */
+.myTable {
+    border-collapse: collapse; /* 合并边框，使表格看起来更整洁 */
+    width: 90%; /* 设置表格宽度为页面宽度的80%，可根据需求调整 */
+    margin: 20px auto; /* 让表格在页面中水平居中，上下有20px的外边距 */
+    overflow: hidden;
+}
+.myTableNew {
+    border-collapse: collapse; /* 合并边框，使表格看起来更整洁 */
+    width: 90%; /* 设置表格宽度为页面宽度的80%，可根据需求调整 */
+    margin: 20px auto; /* 让表格在页面中水平居中，上下有20px的外边距 */
+    overflow-y: auto;
+    max-height: 200px;
+}
+/* 表头样式 */
+.myTable thead th {
+    background-color: #EFEFEF; /* 设置表头背景颜色为蓝色 */
+    color: black; /* 设置表头文字颜色为白色 */
+    padding: 10px; /* 设置表头单元格内边距 */
+    text-align: center; /* 设置表头文字左对齐，可根据需求调整对齐方式 */
+    border: 1px solid #ccc; /* 设置表格表头单元格边框为1px的灰色实线边框 */
+}
+
+/* 表格主体样式 */
+.myTable tbody tr td {
+    border: 1px solid #ccc; /* 设置表格主体单元格边框为1px的灰色实线边框 */
+    padding: 8px; /* 设置表格主体单元格内边距 */
+    text-align: center; /* 设置表格主体单元格文字中心对齐，可根据需求调整对齐方式 */
+}
+
+/* 鼠标悬停在表格行上的样式（可选） */
+.myTable tbody tr:hover {
+    background-color: #f5f5f5; /* 设置鼠标悬停时表格行的背景颜色为浅灰色 */
+}
+.imageContainer {
+    display: flex;
+    flex-wrap: wrap;
+    width: auto;
+    margin-top: 33.1812px;
+    margin-left: 82px;
+    margin-bottom: 0;
+    /* 4列，每列等宽 */
+}
+.imageContainer img {
+             width: 303px;
+             height: 300px;
+             object-fit: cover;
+         }
+.imageContainermyTable {
+    border-collapse: collapse; /* 合并边框，使表格看起来更整洁 */
+    width: 90%; /* 设置表格宽度为页面宽度的80%，可根据需求调整 */
+    margin: 20px auto; /* 让表格在页面中水平居中，上下有20px的外边距 */
+    overflow: hidden;
+    margin-top: 0;
+}
+.imageContainer tbody {
+    margin-top: 0;
+}
+.imageContainer tbody tr td {
+    border: 1px solid #ccc; /* 设置表格主体单元格边框为1px的灰色实线边框 */
+    padding: 8px; /* 设置表格主体单元格内边距 */
+    text-align: center; /* 设置表格主体单元格文字中心对齐，可根据需求调整对齐方式 */
+}
+
+/* 鼠标悬停在表格行上的样式（可选） */
+.imageContainer tbody tr:hover {
+    background-color: #f5f5f5; /* 设置鼠标悬停时表格行的背景颜色为浅灰色 */
+}
+/*分页栏*/
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.pagination a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    background-color: #fff;
+    width: 22px;
+    height: 18px;
+    text-align: center; /* 让文本在水平方向居中 */
+}
+
+.pagination a.active {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.pagination a.prev,
+.pagination a.next {
+    background-color: #f9f9f9;
+}
+
+
+.login-Nav-item {
+    /*background-color: #7aa2d4;*/
+    color: #0F40F5;
+    padding: 10px; /* 添加内边距 */
+    border-radius: 5px; /* 添加圆角效果 */
+    display: inline-block; /* 使div根据内容自适应宽度 */
+}
+
+.login-tile-container {
+    position: absolute;
+    top: 180px; /* 距离上方导航栏100px，可以根据实际情况调整 */
+    left: 30%;
+    right: 30%;
+    text-align: center;
+    height: 9.259%; /* 设置容器高度，可按需修改 */
+    width: 40%;
+    background-color: white; /* 设置容器背景色，可按需修改 */
+    padding: 2px 2px 2px 2px; /* 设置容器内边距，可按需修改*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-container {
+    left: 30%;
+    right: 30%;
+    width: 60%;
+    margin: 55px auto;
+    padding: 20px;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 5px;*/
+    /*background-color: #fff;*/
+    text-align: center;
+}
+
+.longin-label {
+    display: inline-block;
+    margin-bottom: 5px;
+}
+
+.new-login-input {
+    display: inline-block;
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+}
+
+.login-btn{
+    width: 100px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #140175;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 55px;
+}
+
+.register-btn {
+    background-color: #6c757d;
+}
+
+.newform-container{
+    top: 45px;
+    line-height:3;
+}
+
+.account-label{
+    font-size: 30px;
+    color: #39298a;
+    margin-right: 55px;
+    background-color: white;
+    padding: 2px 25px;
+    border-radius: 3px;
+}
+
+.login-input{
+    width: 200px;
+    height: 30px;
+}
+
+.register-link{
+    font-size: 20px;
+    text-decoration: underline; /* 添加下划线 */
+    color: white;
+}
+
+.bottom-container {
+    display: flex;
+    width: 100%;
+    height: 100px;
+    background-color: #000a7b;
+    position: absolute;
+}
+
+.loginleftNavbar-container {
+    background-color: white ;
+    width: 15%;
+    overflow: hidden;
+    height:80vh;
+    display: flex;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.map-canvas {
+    background-color: white;
+    top:20px;
+    width:100%;
+    height:600px;
+    margin: 10px auto;
+    display: block;
+    border-radius: 20px 0 0 20px; /* 使左侧变为圆角，左上角和左下角为圆角，右上角和右下角为直角 */
+    /*padding: 20px 20px 20px 20px; /* 设置容器内边距，可按需修改 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+/* 鼠标悬停在表格行上的样式（可选） */
+.imageContainer tbody tr:hover {
+    background-color: #f5f5f5; /* 设置鼠标悬停时表格行的背景颜色为浅灰色 */
+}
+.myTable tbody tr td {
+    width: 50px;
+}
+.myTablePicture {
+    border-collapse: collapse; /* 合并边框，使表格看起来更整洁 */
+    width: 88%; /* 设置表格宽度为页面宽度的80%，可根据需求调整 */
+    margin: 20px auto; /* 让表格在页面中水平居中，上下有20px的外边距 */
+    overflow: hidden;
+    table-layout: fixed;
+}
+.myTablePicture thead th {
+    background-color: #EFEFEF; /* 设置表头背景颜色为蓝色 */
+    color: black; /* 设置表头文字颜色为白色 */
+    padding: 10px; /* 设置表头单元格内边距 */
+    text-align: center; /* 设置表头文字左对齐，可根据需求调整对齐方式 */
+    border: 1px solid #ccc; /* 设置表格表头单元格边框为1px的灰色实线边框 */
+}
+
+/* 表格主体样式 */
+.myTablePicture tbody tr td {
+    border: 1px solid #ccc; /* 设置表格主体单元格边框为1px的灰色实线边框 */
+    padding: 8px; /* 设置表格主体单元格内边距 */
+    text-align: center; /* 设置表格主体单元格文字中心对齐，可根据需求调整对齐方式 */
+    width: 100px;
+}
+
+/* 鼠标悬停在表格行上的样式（可选） */
+.myTablePicture tbody tr:hover {
+    background-color: #f5f5f5; /* 设置鼠标悬停时表格行的背景颜色为浅灰色 */
+}
+

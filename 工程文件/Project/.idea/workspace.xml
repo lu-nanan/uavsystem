@@ -1,0 +1,653 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="UVASystem:war exploded" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fbe2540f-172a-45bf-a8a3-279f2e237023" name="更改" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/webContexts.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/ZhenziSmsSDK.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/activation.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/annotations-api.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/gson-2.8.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/json-simple-1.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/mail.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/mybatis-3.5.16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/mysql-connector-j-9.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/lib/poi-5.2.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/Test.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/BlackUserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/DataCollectionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/DeviceErrorMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/DeviceInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/DeviceRepairMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/DeviceStateMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/DeviceTaskMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/FeedBackMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/HistoryMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/LogMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/MapDataMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/PictureCollectionMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/TaskInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/TransMassageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/UavPathInfoMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/Mapper/UserMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AddBlackUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AddErrorServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AddUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AddminFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AdminFeedBackServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AdminSearchFeedServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/AuthenticationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/BlackUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/CheckProblemServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/CompeletRepairServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DataCollectionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeletDInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeletFeedServler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeletHistoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeletLogServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeletTaskInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeletUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeviceErrorServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeviceRepairService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/DeviceRepairServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/EditTaskServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/EditUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/FeedBackServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/HandleFeedBackServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/LoginServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/Logservlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/MapDataServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/PictureCollectionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/RegisterServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/RemoveBlackUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchBlackServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchDInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchDRepairServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchDataCollectionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchDstatusServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchHistoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchLogServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchPictureCollectionServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchTaskServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchTransServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SearchUserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SendRepairServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SendVerifCodeServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SetPasswordServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/StopTaskServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SubmitDInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SubmitFeedServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/SubmitTaskServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/TaskInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/TaskResumeServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/TransServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UavPathInfoDetailServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UavPathInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UserDInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UserFeedbackServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UserHistoryServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UserInformationServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/UserManageServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/controller/searchDErrorServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/DeviceInfoDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/DeviceInfoDaoiml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/FeedBackDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/FeedBackDaoIml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/MapDataDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/MapDataDaoImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/Ueserwrapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/UserDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/dao/UserDaoIml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/Alim.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/BlackUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/CunChu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DataCollection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DeviceAction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DeviceError.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DeviceInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DeviceRepair.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DeviceState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/DeviceTask.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/FeedBack.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/History.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/Log.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/MapData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/MessegeTrans.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/PictureCollection.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/TaskExample.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/TaskInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/TaskResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/TransMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/UavPathInfo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/imageData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/entity/textData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/BlackUserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DataCollectionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DeviceErrorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DeviceInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DeviceRepairService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DeviceStateService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DeviceStatusServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/DeviceTaskService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/FeedBackService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/LogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/Loginservice.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/MapDataService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/PictureCollectionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/SearchDInfoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/TaskInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/TransService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/UavPathInfoService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/UserHistoryService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/UserService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/UserServiceIml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/sendCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/service/serviceIml.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/util/DateTimeUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/util/Email.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/util/SqlSessionUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/hnu/util/VCodeUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/BlackUserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DataCollectionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DeviceErrorMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DeviceInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DeviceRepairMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DeviceStateMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/DeviceTaskMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/FeedBackMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/HistoryMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/LogMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/DeviceInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/DeviceStateMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/FeedBackMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/LogMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/TaskMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/META-INF/beans.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/MapDataMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/PictureCollectionMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/TaskMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/TransMessageMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/UavPathInfoMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/UserMapper.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/mybatis-config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/ZhenziSmsSDK.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/activation.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/annotations-api.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/gson-2.8.9.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/json-simple-1.1.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mail.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mybatis-3.5.16.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/mysql-connector-j-9.0.0.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/lib/poi-5.2.3.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/submitFeedback.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/css/userFeedback.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/Change_Pass_User.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/TransMessage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/UavPathInfo.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/UavPathInfoDetail.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/addUVA.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/Change_Pass_User.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/blacklistManagemengt.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/history.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/log.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/managerHome.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/userFeedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/userInformation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/admin/userManage.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/dataCollection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/history.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/image/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/mapInformation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/newLog.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/newregister.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/pitcureCollection.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/register.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/static/leftNavbar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/submitBreakdown.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/submitFeedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/submitOm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/submitTask.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/taskEditing.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/taskList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/test.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/text.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/uavBreakdown.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/uavInformation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/uavOm.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/uavStatus.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/userFeedback.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/userHome.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/html/userInformation.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTTP Request" />
+        <option value="CSS File" />
+        <option value="Interface" />
+        <option value="spring-beans.schema" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="LogFilters">
+    <option name="FILTER_ERRORS" value="false" />
+    <option name="FILTER_WARNINGS" value="false" />
+    <option name="FILTER_INFO" value="true" />
+    <option name="FILTER_DEBUG" value="true" />
+    <option name="CUSTOM_FILTER" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="使用 Maven 包装器" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2okP1QaDcXITLJStsTS6s0jxFJp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JavaScript 调试.AddUVA (1).html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.AddUVA.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.Change_Pass_User.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.Change_pass_Manager.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.UserManagement.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.addUVA.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.blacklistManagemengt.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.dataCollection.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.history.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.index.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.leftNavbar.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.log.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.login.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.managerHome.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.multiplexNavigation.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.newLog.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.register (1).html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.register.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.submitBreakdown.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.submitFeedback.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.submitOm.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.submitTask.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.taskEditing.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.taskList.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.test.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.text.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.uavBreakdown.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.uavInformation.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.uavOM.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.uavOm.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.uavStatus.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.userFeedback.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.userHome.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.userInformation.html.executor&quot;: &quot;Run&quot;,
+    &quot;JavaScript 调试.userManage.html.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.text.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;Tomcat 服务器.Tomcat 10.1.28.executor&quot;: &quot;Run&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/UAVSystem/logs&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;项目&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.47356322&quot;,
+    &quot;service.view.auto.scroll.from.source&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;database.data.views&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;,
+    &quot;应用程序.Test.executor&quot;: &quot;Run&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\UAVSystem\logs" />
+      <recent name="C:\UAVSystem\src\main\webapp\html\admin" />
+      <recent name="C:\UAVSystem\src\main\java\com\hnu\controller" />
+      <recent name="C:\UAVSystem\src\main\webapp\html" />
+      <recent name="C:\UAVSystem\src\main\java\com\hnu" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\UAVSystem\src\main\webapp" />
+      <recent name="C:\UAVSystem\src\main\webapp\html" />
+      <recent name="D:\University\企业应用开发\frame\UAVSystem\src\main\webapp\html\admin" />
+      <recent name="D:\University\企业应用开发\frame\UAVSystem\src\main\resources" />
+      <recent name="D:\University\企业应用开发\frame\UAVSystem\src\main\webapp" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.hnu.controller" />
+      <recent name="com.hnu.service" />
+      <recent name="com.hnu.Mapper" />
+      <recent name="com.hnu.entity" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Tomcat 服务器.Tomcat 10.1.28">
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="UVASystem" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Tomcat 10.1.28" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 10.1.28" ALTERNATIVE_JRE_ENABLED="false">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment>
+        <artifact name="UVASystem:war exploded">
+          <settings>
+            <option name="CONTEXT_PATH" value="/UVASystem_war_exploded" />
+          </settings>
+        </artifact>
+      </deployment>
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="23dc8102-bc28-47d3-b9b5-1e4bf5ab7cee" />
+      </server-settings>
+      <log_file alias="Tomcat Manager 日志" path="%IDEA_RUN:CATALINA_BASE%/logs/manager.*" />
+      <log_file alias="Tomcat Host Manager 日志" path="%IDEA_RUN:CATALINA_BASE%/logs/host-manager.*" />
+      <log_file alias="Tomcat Localhost Access 日志" path="%IDEA_RUN:CATALINA_BASE%/logs/localhost_access_log.*" />
+      <predefined_log_file enabled="true" id="Tomcat" />
+      <predefined_log_file enabled="true" id="Tomcat Catalina" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="64859" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Profile">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <method v="2">
+        <option name="Make" enabled="true" />
+        <option name="BuildArtifacts" enabled="true">
+          <artifact name="frame:war exploded" />
+          <artifact name="UVASystem:war exploded" />
+        </option>
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Tomcat 服务器.Tomcat 10.1.28" />
+      <item itemvalue="应用程序.Test" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="应用程序.Test" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-22-openjdk-22-f644763e9732-8c5c9ae5" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="fbe2540f-172a-45bf-a8a3-279f2e237023" name="更改" comment="" />
+      <created>1731410385825</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1731410385825</updated>
+      <workItem from="1731410387009" duration="7538000" />
+      <workItem from="1731487146380" duration="1759000" />
+      <workItem from="1731501241297" duration="11000" />
+      <workItem from="1731576366499" duration="1393000" />
+      <workItem from="1731594701552" duration="596000" />
+      <workItem from="1731679055376" duration="333000" />
+      <workItem from="1731679506928" duration="2646000" />
+      <workItem from="1731758076804" duration="14299000" />
+      <workItem from="1731919535754" duration="3216000" />
+      <workItem from="1732084866977" duration="4473000" />
+      <workItem from="1732102270367" duration="5619000" />
+      <workItem from="1732177962407" duration="672000" />
+      <workItem from="1732268981309" duration="9672000" />
+      <workItem from="1732287005310" duration="24143000" />
+      <workItem from="1732435423690" duration="7674000" />
+      <workItem from="1732447055734" duration="8351000" />
+      <workItem from="1732455438188" duration="5275000" />
+      <workItem from="1732516517700" duration="3395000" />
+      <workItem from="1732522277638" duration="5303000" />
+      <workItem from="1732534171931" duration="3569000" />
+      <workItem from="1732537947492" duration="9096000" />
+      <workItem from="1732589179564" duration="3112000" />
+      <workItem from="1732623727393" duration="22922000" />
+      <workItem from="1732693884864" duration="1568000" />
+      <workItem from="1732696235811" duration="1361000" />
+      <workItem from="1732697699073" duration="10998000" />
+      <workItem from="1732759169301" duration="6220000" />
+      <workItem from="1732785978468" duration="14659000" />
+      <workItem from="1732812062511" duration="1454000" />
+      <workItem from="1732838676323" duration="4423000" />
+      <workItem from="1732884914225" duration="5458000" />
+      <workItem from="1732939557168" duration="1873000" />
+      <workItem from="1732958059615" duration="290000" />
+      <workItem from="1732958585308" duration="20000" />
+      <workItem from="1732958614173" duration="24000" />
+      <workItem from="1732964045464" duration="603000" />
+      <workItem from="1733046748733" duration="678000" />
+      <workItem from="1733192847073" duration="9641000" />
+      <workItem from="1733236603044" duration="10219000" />
+      <workItem from="1733310610546" duration="34463000" />
+      <workItem from="1733477423349" duration="9881000" />
+      <workItem from="1733586037301" duration="1735000" />
+      <workItem from="1733669191331" duration="3557000" />
+      <workItem from="1733748456019" duration="169000" />
+      <workItem from="1733748634064" duration="8296000" />
+      <workItem from="1733824387805" duration="823000" />
+      <workItem from="1733831870276" duration="5429000" />
+      <workItem from="1733842177938" duration="4735000" />
+      <workItem from="1733910618347" duration="6411000" />
+      <workItem from="1733928176044" duration="7036000" />
+      <workItem from="1733969148380" duration="394000" />
+      <workItem from="1733970288534" duration="1383000" />
+      <workItem from="1734002712540" duration="10833000" />
+      <workItem from="1734056301228" duration="4890000" />
+      <workItem from="1734094135331" duration="759000" />
+      <workItem from="1734184690842" duration="3915000" />
+      <workItem from="1734194712609" duration="508000" />
+      <workItem from="1734195235667" duration="13891000" />
+      <workItem from="1734350364780" duration="8160000" />
+      <workItem from="1734360476757" duration="2393000" />
+      <workItem from="1734414482452" duration="2000" />
+      <workItem from="1734414496187" duration="12324000" />
+      <workItem from="1734429351990" duration="478000" />
+      <workItem from="1734437890627" duration="882000" />
+      <workItem from="1734438781332" duration="4015000" />
+      <workItem from="1734499110553" duration="606000" />
+      <workItem from="1734504209583" duration="2830000" />
+      <workItem from="1734522485237" duration="17541000" />
+      <workItem from="1734598291149" duration="24802000" />
+      <workItem from="1734690600501" duration="5892000" />
+      <workItem from="1734699148781" duration="3783000" />
+      <workItem from="1734703291024" duration="1357000" />
+      <workItem from="1734705026647" duration="5032000" />
+      <workItem from="1734754828451" duration="2892000" />
+      <workItem from="1734757741145" duration="743000" />
+      <workItem from="1734758493748" duration="7108000" />
+      <workItem from="1734767859081" duration="50000" />
+      <workItem from="1734767919258" duration="3068000" />
+      <workItem from="1734774583068" duration="16858000" />
+      <workItem from="1734795064805" duration="63000" />
+      <workItem from="1734795155354" duration="53000" />
+      <workItem from="1734795227424" duration="109000" />
+      <workItem from="1734795861018" duration="2721000" />
+      <workItem from="1734828175446" duration="3522000" />
+      <workItem from="1734849374887" duration="29352000" />
+      <workItem from="1734932917682" duration="765000" />
+      <workItem from="1734933736823" duration="15546000" />
+      <workItem from="1734951657978" duration="9630000" />
+      <workItem from="1734961329898" duration="3244000" />
+      <workItem from="1734967086891" duration="4811000" />
+      <workItem from="1735012092180" duration="26615000" />
+      <workItem from="1735051496359" duration="3969000" />
+      <workItem from="1735110751102" duration="3524000" />
+      <workItem from="1735114518805" duration="5501000" />
+      <workItem from="1735141715522" duration="5278000" />
+      <workItem from="1735178527374" duration="8334000" />
+      <workItem from="1735205497710" duration="3310000" />
+      <workItem from="1735222377717" duration="8359000" />
+      <workItem from="1735231141847" duration="83000" />
+      <workItem from="1735231344761" duration="108000" />
+      <workItem from="1735280836337" duration="75000" />
+      <workItem from="1735308383720" duration="5764000" />
+      <workItem from="1735314414415" duration="1771000" />
+      <workItem from="1735316209521" duration="352000" />
+      <workItem from="1735316718067" duration="636000" />
+      <workItem from="1735317663920" duration="4945000" />
+      <workItem from="1735833292250" duration="856000" />
+      <workItem from="1736256587477" duration="3156000" />
+      <workItem from="1736342106607" duration="1624000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hnu/controller/LoginServlet.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hnu/controller/AuthenticationFilter.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/hnu/controller/UavPathInfoServlet.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

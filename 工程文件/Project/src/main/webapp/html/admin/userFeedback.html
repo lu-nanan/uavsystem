@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+<body style="margin: 0">
+    <div class="background - plate">
+        <!-- 背景板 -->
+    </div>
+    <div class="navbar-container">
+        <div class="topNavbar-container">
+            <!-- 顶部导航栏内容容器 -->
+            <div class="topNavbar-content">
+                <!-- 段落标签 -->
+                <div class="topNavbar-content-paragraph">
+                    <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+                </div>
+                <!-- 顶部导航项容器 -->
+                <div class="topNavbarItems">
+                    <a href="userInformation.html" class="topNav-item">个人消息</a>
+                    <a href="../../index.html" class="topNav-item">退出登录</a>
+                </div>
+            </div>
+        </div>
+        <div class="leftNavbar-container">
+            <!-- 左侧导航栏内容容器 -->
+            <div class="leftNavbar-items">
+                <a href="userManage.html" class="leftNav-item">用户管理</a>
+                <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+                <a href="log.html" class="leftNav-item">日志</a>
+                <a href="history.html" class="leftNav-item">历史记录</a>
+                <a href="blacklistManagemengt.html" class="leftNav-item">黑名单管理</a>
+            </div>
+        </div>
+    </div>
+    <div class="tile-container">
+        <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">用户反馈</p>
+    </div>
+    <div class="form-container">
+        <div class="rowOne-container">
+            <select class="dropdown-selector" id="searchOption">
+                <option value="id">ID</option>
+                <option value="userId">用户ID</option>
+                <option value="isRead">是否已处理</option>
+            </select>
+            <input style="height: 28px" type="text" id="searchInput" placeholder="请输入">
+            <button  class="search-button" id="searchButton">查询</button>
+        </div>
+        <script>  //  反馈查询
+            document.getElementById("searchButton").addEventListener("click", function () {
+                const searchInput = document.getElementById("searchInput").value;
+                const searchOption = document.getElementById("searchOption").value;
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `/UVASystem_war_exploded/searchFeedBack-servlet?searchKeyword=${searchInput}&searchBy=${searchOption}`, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+                xhr.send();
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        const paginationElement = document.getElementById("pagination");
+                        if (paginationElement) {
+                            paginationElement.remove();
+                        }
+                        const flowContainer = document.getElementById('flowContainer');
+                        flowContainer.style.overflow = 'auto';
+                        flowContainer.style.maxHeight = '400px';
+                        const responseTexts = JSON.parse(xhr.responseText);
+                        const tbody = document.getElementById('dataBody');
+                        tbody.innerHTML = "";
+                        responseTexts.forEach(responseText => {
+                            const row = tbody.insertRow();
+                            const cell1 = row.insertCell(0);
+                            const cell2 = row.insertCell(1);
+                            const cell3 = row.insertCell(2);
+                            const cell4 = row.insertCell(3);
+                            const cell5= row.insertCell(4);
+                            const cell6= row.insertCell(5);
+                            cell1.textContent = responseText.id;
+                            cell2.textContent = responseText.userId;
+                            cell3.textContent = responseText.content;
+                            cell4.textContent = responseText.time;
+                            cell5.textContent = responseText.isRead;
+                            const deleteLink = document.createElement('a');
+
+                            deleteLink.addEventListener("click",function () {
+                                const xhr1 = new XMLHttpRequest();
+                                xhr1.open('GET', `/UVASystem_war_exploded/readFeedBack-servlet?id=${responseText.id}`, true);
+                                xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                                xhr1.send();
+                                xhr1.onreadystatechange = function () {
+                                    if(xhr1.readyState === 4 && xhr1.status === 200) {
+                                        const responseText = JSON.parse(xhr1.response);
+                                        alert(responseText.message);
+                                        location.reload();
+                                    }
+                                }
+                            })
+                            // deleteLink.href = `/UVASystem_war_exploded/readFeedBack-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                            if(responseText.isRead === "已处理") {
+                                deleteLink.textContent = "---";
+                            }
+                            else {deleteLink.textContent = '已阅';}
+                            const deleteButton = document.createElement('button');
+                            deleteButton.style.backgroundColor ='#BD3124';
+                            deleteButton.style.border = 'none';
+                            deleteButton.style.borderRadius = '5px';
+                            deleteLink.style.color = 'white';
+                            deleteLink.style.textDecoration = 'none';
+                            deleteButton.appendChild(deleteLink);
+                            cell6.appendChild(deleteButton);
+                        });
+                    }
+                };
+            });
+        </script>
+        <div id="flowContainer">
+            <table class="myTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>用户ID</th>
+                    <th>内容</th>
+                    <th>时间</th>
+                    <th>是否已处理</th>
+                    <th>操作</th>
+                </tr>
+                </thead>
+                <tbody id="dataBody">
+                </tbody>
+            </table>
+        </div>
+        <script>
+            window.onload=function (){  //  页面初始化
+                const userID = sessionStorage.getItem('userID');
+                const page="1";
+                const xhr = new XMLHttpRequest();
+                xhr.open('GET', `/UVASystem_war_exploded/adminUserFeedback-servlet?page=${page}&userId=${userID}`, true);
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+                xhr.send();
+                handleAjaxResponse(xhr);
+            }
+        </script>
+        <div class="pagination" id="pagination"></div>
+    </div>
+<script>
+    let currentPage = 1;
+    // 生成分页链接函数，优化活动页切换逻辑
+    function generatePagination() {
+        totalPages = sessionStorage.getItem("totalPages");
+        const pagination = document.querySelector('.pagination');
+        // 清空现有的分页链接
+        pagination.innerHTML = '';
+        let startPage;
+        let endPage;
+        if(totalPages < 5) {
+            startPage = 1;
+            endPage = totalPages;
+        }
+        else {
+            startPage = Math.max(currentPage-2,1);
+            if(currentPage < 3) {
+                endPage = 5;
+            }
+            else {
+                endPage = Math.min(totalPages,currentPage+2);
+            }
+        }
+        // 生成“上一页”链接
+        const prevLink = document.createElement('a');
+        prevLink.href = '#';
+        prevLink.textContent = `<`;
+        prevLink.classList.add('prev');
+        if (currentPage === 1) {
+            prevLink.disabled = true;
+        } else {
+            prevLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                currentPage--;
+                handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                generatePagination();
+            });
+        }
+        pagination.appendChild(prevLink);
+        // 生成分页链接
+        for (let i = startPage; i <= endPage; i++) {
+            const pageLink = document.createElement('a');
+            pageLink.href = '#';
+            pageLink.textContent = i;
+            pageLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                currentPage = i;
+                handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                generatePagination();
+            });
+            if (i === currentPage) {
+                pageLink.classList.add("active");
+            }
+            pageLink.classList.add("page");
+            pagination.appendChild(pageLink);
+        }
+        // 生成“下一页”链接
+        const nextLink = document.createElement('a');
+        nextLink.href = '#';
+        nextLink.textContent = '>';
+        nextLink.classList.add('next');
+        if (currentPage === parseInt(totalPages)) {
+            nextLink.disabled = true;
+        } else {
+            nextLink.addEventListener('click', function (e) {
+                console.log(totalPages);
+                e.preventDefault();
+                console.log("error");
+                currentPage++;
+                handleAjaxRequest(currentPage); // 获取对应页数据并更新表格
+                generatePagination();
+            });
+        }
+        pagination.appendChild(nextLink);
+    }
+    function handleAjaxRequest(page) {
+        const userID = sessionStorage.getItem('userID');
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `/UVASystem_war_exploded/adminUserFeedback-servlet?page=${page}&userId=${userID}`, true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+        xhr.send();
+        handleAjaxResponse(xhr);
+    }
+    function handleAjaxResponse(xhr) {
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const responseTexts = JSON.parse(xhr.responseText);
+                let totalPages;
+                if (responseTexts.length > 0) {
+                    totalPages = responseTexts[0].totalPages;
+                } else {
+                    totalPages = 0;
+                }
+                sessionStorage.setItem("totalPages",totalPages);
+                generatePagination();
+                const tbody = document.getElementById('dataBody');
+                tbody.innerHTML="";
+                responseTexts.forEach(responseText => {
+                    const row = tbody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5= row.insertCell(4);
+                    const cell6= row.insertCell(5);
+                    cell1.textContent = responseText.id;
+                    cell2.textContent = responseText.userId;
+                    cell3.textContent = responseText.content;
+                    cell4.textContent = responseText.time;
+                    cell5.textContent = responseText.isRead;
+                    const deleteLink = document.createElement('a');
+
+                    if(responseText.isRead === "已处理") {
+                        deleteLink.textContent = "---";
+                        deleteLink.href = "";
+                    }
+                    else {
+                        deleteLink.href = `/UVASystem_war_exploded/readFeedBack-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                        deleteLink.textContent = '已阅';
+                    }
+                    const deleteButton = document.createElement('button');
+                    deleteButton.style.backgroundColor ='#BD3124';
+                    deleteButton.style.border = 'none';
+                    deleteButton.style.borderRadius = '5px';
+                    deleteLink.style.color = 'white';
+                    deleteLink.style.textDecoration = 'none';
+                    deleteButton.appendChild(deleteLink);
+                    cell6.appendChild(deleteButton);
+                });
+            }
+        };
+    }
+</script>
+</body>
+</html>

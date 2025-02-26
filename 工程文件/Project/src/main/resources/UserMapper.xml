@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.UserMapper">
+    <resultMap id="UserResultMap" type="com.hnu.entity.User">
+        <result property="id" column="用户ID"/>
+        <result property="email" column="邮箱"/>
+        <result property="password" column="密码"/>
+        <result property="phone" column="手机号"/>
+        <result property="type" column="用户类型"/>
+    </resultMap>
+
+
+    <!-- 定义查询所有用户的 SQL 语句-->
+    <select id="findAllUsers" resultMap="UserResultMap">
+        SELECT * FROM 个人信息;
+    </select>
+
+    <!-- 定义根据用户 ID 查询用户的 SQL 语句-->
+    <select id="findUserById" parameterType="int" resultMap="UserResultMap">
+        SELECT * FROM 个人信息 WHERE 用户ID = #{id};
+    </select>
+    <select id="findUserByEmail" parameterType="String" resultMap="UserResultMap">
+        SELECT * FROM 个人信息 WHERE 邮箱= #{email};
+    </select>
+    <select id="findUserByPhone" parameterType="long" resultMap="UserResultMap">
+        SELECT * FROM 个人信息 WHERE 手机号= #{phone};
+    </select>
+    <select id="findUserByPassword" parameterType="String" resultMap="UserResultMap">
+        SELECT * FROM 个人信息 WHERE 密码= #{password};
+    </select>
+    <select id="selectUsersNotInBlacklist" resultMap="UserResultMap">
+        SELECT 个人信息.*
+        FROM 个人信息
+        WHERE 用户ID NOT IN (
+            SELECT 用户
+            FROM 黑名单表
+        )
+    </select>
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addUser" parameterType="com.hnu.entity.User" useGeneratedKeys="true" keyColumn="用户ID" keyProperty="id">
+        INSERT INTO 个人信息(邮箱,密码,手机号,用户类型) VALUES (#{email}, #{password}, #{phone}, #{type});
+    </insert>
+
+    <!-- 定义根据用户 ID 删除用户的 SQL 语句-->
+    <delete id="deleteUserById" parameterType="int" >
+        DELETE FROM 个人信息 WHERE 用户ID=#{id};
+    </delete>
+
+    <!-- 定义根据用户 ID 更新用户密码的 SQL 语句-->
+    <update id="updatePasswordById" parameterType="map">
+        UPDATE 个人信息 SET 密码= #{newPassword} WHERE 用户ID = #{id};
+    </update>
+
+</mapper>
+

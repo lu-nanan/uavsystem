@@ -1,0 +1,37 @@
+.white-panel {
+    background-color: white;
+    width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+textarea {
+    width: 100%;
+    margin-bottom: 10px;
+    resize: vertical;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+#submit-btn {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+}
+
+#back-btn {
+    background-color: #6C757D;
+    color: white;
+    border: none;
+}

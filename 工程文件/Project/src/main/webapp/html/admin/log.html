@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">个人消息</a>
+                <a href="../../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="userManage.html" class="leftNav-item">用户管理</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="log.html" class="leftNav-item">日志</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+            <a href="blacklistManagemengt.html" class="leftNav-item">黑名单管理</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">日志</p>
+</div>
+<div class="form-container">
+    <div class="rowOne-container">
+        <select class="dropdown-selector" id="searchOption">
+            <option value="time">时间</option>
+            <option value="rank">级别</option>
+            <option value="source">来源</option>
+            <option value="infomartion">信息</option>
+        </select>
+        <input style="height: 28px" type="text" id="searchInput" placeholder="请输入">
+        <button  class="search-button" id="searchButton">查询</button>
+    </div>
+    <script>  //  无人机信息查询
+    document.getElementById("searchButton").addEventListener("click", function () {
+        const searchInput = document.getElementById("searchInput").value;
+        const searchOption = document.getElementById("searchOption").value;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', `/UVASystem_war_exploded/searchLog-servlet?searchInput=${searchInput}&searchOption=${searchOption}`, true);
+        // 设置请求头，指定发送的数据为JSON格式
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.send();
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                const paginationElement = document.getElementById("pagination");
+                if (paginationElement) {
+                    paginationElement.remove();
+                }
+                const flowContainer = document.getElementById('flowContainer');
+                flowContainer.style.overflow = 'auto';
+                flowContainer.style.maxHeight = '400px';
+                const responseTexts = JSON.parse(xhr.responseText);
+                const tbody = document.getElementById('dataBody');
+                tbody.innerHTML = "";
+                responseTexts.forEach(responseText => {
+                    const row = tbody.insertRow();
+                    const cell1 = row.insertCell(0);
+                    const cell2 = row.insertCell(1);
+                    const cell3 = row.insertCell(2);
+                    const cell4 = row.insertCell(3);
+                    const cell5 = row.insertCell(4);
+                    cell1.textContent = responseText.time;
+                    cell2.textContent = responseText.rank;
+                    cell3.textContent = responseText.source;
+                    cell4.textContent = responseText.content;
+                    const deleteLink = document.createElement('a');
+                    deleteLink.href = `/UVASystem_war_exploded/logDel-servlet?id=${responseText.id}`;
+                    deleteLink.textContent = '删除';
+                    const deleteButton = document.createElement('button');
+                    deleteButton.style.backgroundColor ='#BD3124';
+                    deleteButton.style.border = 'none';
+                    deleteButton.style.borderRadius = '5px';
+                    deleteLink.style.color = 'white';
+                    deleteLink.style.textDecoration = 'none';
+                    deleteButton.appendChild(deleteLink);
+                    cell5.appendChild(deleteButton);
+                });
+            }
+        };
+    });
+    </script>
+    <div id="flowContainer">
+        <table class="myTable">
+            <thead>
+            <tr>
+                <th>时间</th>
+                <th>级别</th>
+                <th>来源</th>
+                <th>信息</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody id="dataBody">
+            </tbody>
+        </table>
+    </div>
+    <script>
+        //页面初始化
+        window.onload=function (){
+            const page="1";
+            const xhr = new XMLHttpRequest();  //  使用 AJAX 从 Servlet 获取数据并填充表格
+            xhr.open('GET', `/UVASystem_war_exploded/log-servlet?page=${page}`, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');  //  设置请求头，指定发送的数据为JSON格式
+            xhr.send();
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const responseTexts = JSON.parse(xhr.responseText);
+                    const tbody = document.getElementById('dataBody');
+                    tbody.innerHTML="";
+                    responseTexts.forEach(responseText => {
+                        const row = tbody.insertRow();
+                        const cell1 = row.insertCell(0);
+                        const cell2 = row.insertCell(1);
+                        const cell3 = row.insertCell(2);
+                        const cell4 = row.insertCell(3);
+                        const cell5 = row.insertCell(4);
+                        cell1.textContent = responseText.time;
+                        cell2.textContent = responseText.rank;
+                        cell3.textContent = responseText.source;
+                        cell4.textContent = responseText.content;
+                        const deleteLink = document.createElement('a');
+                        deleteLink.href = `/UVASystem_war_exploded/logDel-servlet?id=${responseText.id}`; // 调用处理删除的 Servlet
+                        deleteLink.textContent = '删除';
+                        const deleteButton = document.createElement('button');
+                        deleteButton.style.backgroundColor ='#BD3124';
+                        deleteButton.style.border = 'none';
+                        deleteButton.style.borderRadius = '5px';
+                        deleteLink.style.color = 'white';
+                        deleteLink.style.textDecoration = 'none';
+                        deleteButton.appendChild(deleteLink);
+                        cell5.appendChild(deleteButton);
+                    });
+                }
+            };
+        }
+    </script>
+    <div class="pagination" id="pagination">
+
+    </div>
+</div>
+</body>
+</html>

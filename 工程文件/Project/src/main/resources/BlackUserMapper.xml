@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.BlackUserMapper">
+    <resultMap id="BlackUserResultMap" type="com.hnu.entity.BlackUser">
+        <result property="userid" column="用户"/>
+        <result property="adminid" column="处理人"/>
+        <result property="dotime" column="拉黑时间"/>
+    </resultMap>
+
+
+    <!-- 定义查询所有用户的 SQL 语句-->
+    <select id="findAllBlackUsers" resultMap="BlackUserResultMap">
+        SELECT * FROM 黑名单表;
+    </select>
+
+    <!-- 定义根据用户 ID 查询用户的 SQL 语句-->
+    <select id="findBlackByUId" parameterType="int" resultMap="BlackUserResultMap">
+        SELECT * FROM 黑名单表 WHERE 用户 = #{userid};
+    </select>
+    <select id="findBlackByAdmin" parameterType="int" resultMap="BlackUserResultMap">
+        SELECT * FROM 黑名单表 WHERE 处理人= #{adminid};
+    </select>
+    <select id="findBlackByDate" parameterType="Date" resultMap="BlackUserResultMap">
+        SELECT * FROM 黑名单表 WHERE 拉黑时间= #{dotime};
+    </select>
+
+    <!-- 定义新增用户的 SQL 语句-->
+    <insert id="addBlack" parameterType="com.hnu.entity.BlackUser" useGeneratedKeys="true" keyColumn="用户" keyProperty="uesrid">
+        INSERT INTO 黑名单表(用户,处理人,拉黑时间) VALUES (#{userid}, #{adminid}, #{dotime});
+    </insert>
+
+    <!-- 定义根据用户 ID 删除用户的 SQL 语句-->
+    <delete id="deleteBlackByUId" parameterType="int" >
+        DELETE FROM 黑名单表 WHERE 用户=#{userid};
+    </delete>
+</mapper>
+

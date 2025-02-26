@@ -1,0 +1,73 @@
+.white-panel {
+    background-color: white;
+    width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.filter-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.filter-section select {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.filter-section input {
+    padding: 5px;
+    margin-right: 10px;
+}
+
+.filter-section button {
+    padding: 5px 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.table-section table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table-section table th,
+.table-section table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.table-section table th {
+    background-color: #f4f4f4;
+}
+
+.delete-btn {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.pagination-section {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.pagination-section button {
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.page-number {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.current-page {
+               background-color: lightblue;
+           }

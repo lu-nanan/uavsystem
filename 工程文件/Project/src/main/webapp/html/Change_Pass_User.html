@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+</head>
+<body style="margin: 0">
+<div class="background - plate">
+    <!-- 背景板 -->
+</div>
+<div class="navbar-container">
+    <div class="topNavbar-container">
+        <!-- 顶部导航栏内容容器 -->
+        <div class="topNavbar-content">
+            <!-- 段落标签 -->
+            <div class="topNavbar-content-paragraph">
+                <p style="font-size: 25px;">对抗环境下无人机群动态任务协助与迁移系统</p>
+            </div>
+            <!-- 顶部导航项容器 -->
+            <div class="topNavbarItems">
+                <a href="userInformation.html" class="topNav-item">普通用户</a>
+                <a href="../index.html" class="topNav-item">退出登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="leftNavbar-container">
+        <!-- 左侧导航栏内容容器 -->
+        <div class="leftNavbar-items">
+            <a href="taskList.html" class="leftNav-item">任务列表</a>
+            <a href="uavStatus.html" class="leftNav-item">无人机状态</a>
+            <a href="uavInformation.html" class="leftNav-item">无人机信息</a>
+            <a href="uavBreakdown.html" class="leftNav-item">无人机故障</a>
+            <a href="uavOm.html" class="leftNav-item">无人机运维</a>
+            <a href="TransMessage.html" class="leftNav-item">信息转传输</a>
+            <a href="mapInformation.html" class="leftNav-item">地图消息</a>
+            <a href="UavPathInfo.html" class="leftNav-item">路径规划</a>
+            <a href="dataCollection.html" class="leftNav-item">返回数据</a>
+            <a href="pitcureCollection.html" class="leftNav-item">返回图片</a>
+            <a href="userFeedback.html" class="leftNav-item">用户反馈</a>
+            <a href="history.html" class="leftNav-item">历史记录</a>
+        </div>
+    </div>
+</div>
+<div class="tile-container">
+    <p style="color: #0014B7; font-size: 26px;margin-left: 62px;">个人信息</p>
+</div>
+<div class="form-container">
+    <div class="rowOne-container">
+        <table border="1" width="500" height="250" cellspacing="0">
+            <tr id="row1" height="50" align="center" valign="middle">
+                <td>ID</td>
+            </tr>
+            <tr id="row2" height="50" align="center" valign="middle">
+                <td>邮箱</td>
+            </tr>
+            <tr id="row3" height="50" align="center" valign="middle">
+                <td>手机号</td>
+            </tr>
+            <tr  height="50" align="center" valign="middle">
+                <td >密码</td>
+                <td><input id="password" type="text"></td>
+            <tr>
+            <tr  height="50" align="center" valign="middle">
+                <td >再次确认密码</td>
+                <td>
+                    <form action="./Change_Pass_User.html" target="_self">
+                    <input id="confirmPassword" type="text">
+                    <button id="changePassword">修改密码</button>
+                    </form>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<script>  //  用户信息初始化
+    window.onload=function () {
+    const userID=sessionStorage.getItem("userId");
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', `/UVASystem_war_exploded/userInformation-servlet?id=${userID}`, true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            const responseText = JSON.parse(xhr.responseText);
+            var row1 = document.getElementById('row1');
+            var row2 = document.getElementById('row2');
+            var row3 = document.getElementById('row3');
+            const cell1 = row1.insertCell(1);
+            const cell2 = row2.insertCell(1);
+            const cell3 = row3.insertCell(1);
+            cell1.textContent = userID;
+            cell2.textContent = responseText.email;
+            cell3.textContent = responseText.telephone;
+            }
+    };
+    document.getElementById("changePassword").addEventListener("click", function () {
+        const userID=sessionStorage.getItem("userId");
+        const password=document.getElementById("password").value;
+        const confirmPassword=document.getElementById("confirmPassword").value;
+        const xhr1 = new XMLHttpRequest();
+        xhr1.open('POST', `/UVASystem_war_exploded/userChangePassword-servlet`, true);
+        xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr1.send(`userID=${userID}&password=${password}&confirmPassword=${confirmPassword}`);
+        if (xhr1.readyState === 4 && xhr1.status === 200) {
+            const responseText = JSON.parse(xhr1.responseText);
+            if(responseText.result === 200) alert(responseText.message);
+        }
+    });
+  }
+</script>
+</body>
+</html>

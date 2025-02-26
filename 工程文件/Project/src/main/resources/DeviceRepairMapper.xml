@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.DeviceRepairMapper">
+    <resultMap id="DRepairResultMap" type="com.hnu.entity.DeviceRepair">
+        <result property="deviceid" column="无人机"/>
+        <result property="time" column="送修时间"/>
+        <result property="problem" column="问题"/>
+        <result property="handler" column="处理人"/>
+        <result property="completetime" column="修理完成时间"/>
+        <result property="reid" column="维修记录ID"/>
+    </resultMap>
+
+
+    <!-- 定义查询所有无人机的 SQL 语句-->
+    <select id="findAllDeviceRepair" resultMap="DRepairResultMap">
+        SELECT * FROM 无人机维修记录  order by 送修时间 DESC;
+    </select>
+
+    <!-- 定义根据单个ID 查询无人机的 SQL 语句-->
+    <select id="findDeviceRepairByDId" parameterType="int" resultMap="DRepairResultMap">
+        SELECT * FROM 无人机维修记录 WHERE 无人机 = #{deviceid};
+    </select>
+    <select id="findDeviceRepairByRID" parameterType="int" resultMap="DRepairResultMap">
+        SELECT * FROM 无人机维修记录 WHERE 维修记录ID= #{reid};
+    </select>
+    <select id="findDeviceRepairByStime" parameterType="Date" resultMap="DRepairResultMap">
+        SELECT * FROM 无人机维修记录 WHERE 送修时间= #{time};
+    </select>
+    <select id="findDeviceRepairByCtime" parameterType="Date" resultMap="DRepairResultMap">
+        SELECT * FROM 无人机维修记录 WHERE 修理完成时间= #{completetime};
+    </select>
+    <select id="findDeviceRepairByHandler" parameterType="int" resultMap="DRepairResultMap">
+        SELECT * FROM 无人机维修记录 WHERE 处理人= #{handler};
+    </select>
+    <!-- 定义新增无人机的 SQL 语句-->
+    <insert id="addDeviceRepair" parameterType="com.hnu.entity.DeviceRepair" useGeneratedKeys="true" keyColumn="维修记录ID" keyProperty="reid">
+        INSERT INTO 无人机维修记录(无人机,送修时间,问题,处理人 ,修理完成时间 ,维修记录ID) VALUES (#{deviceid}, #{time}, #{problem}, #{handler},#{completetime},#{reid});
+    </insert>
+
+    <!-- 定义根据无人机ID删除无人机的 SQL 语句-->
+    <delete id="deleteDeviceRepairByRId" parameterType="int" >
+        DELETE FROM 无人机维修记录 WHERE 维修记录ID=#{reid};
+    </delete>
+    <delete id="deleteDeviceRepairByDId" parameterType="int" >
+        DELETE FROM 无人机维修记录 WHERE 无人机=#{deviceid};
+    </delete>
+    <update id="updateActionHandler" parameterType="map">
+        UPDATE 无人机维修记录 SET 处理人= #{handler} WHERE 维修记录ID= #{reid};
+    </update>
+    <update id="updatePepairbyProblem" parameterType="map">
+        UPDATE 无人机维修记录 SET 问题= #{problem},处理人 = #{handler} WHERE 维修记录ID= #{reid};
+    </update>
+    <update id="updatePepairbyDate" parameterType="map">
+        UPDATE 无人机维修记录 SET 修理完成时间 = #{completetime} WHERE 维修记录ID= #{reid};
+    </update>
+    <update id="updateAllFields"  parameterType="map">
+        UPDATE 无人机维修记录
+        SET
+            问题 = #{problem},
+            处理人 = #{handler},
+            修理完成时间 = #{completetime}
+        WHERE 维修记录ID = #{reid};
+    </update>
+
+</mapper>
+

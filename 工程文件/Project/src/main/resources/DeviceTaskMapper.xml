@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 定义命名空间 -->
+<mapper namespace="com.hnu.Mapper.DeviceTaskMapper">
+    <resultMap id="DeviceTaskResultMap" type="com.hnu.entity.DeviceTask">
+        <result property="taskid" column="任务"/>
+        <result property="deviceid" column="无人机"/>
+    </resultMap>
+    <!-- 定义查询所有无人机状态 语句-->
+    <select id="findAllTask" resultMap="DeviceTaskResultMap">
+        SELECT * FROM 无人机任务表 order by 任务 DESC
+    </select>
+
+    <!-- 定义根据 ID 查询无人机状态SQL 语句-->
+    <select id="findTaskByDId" parameterType="int" resultMap="DeviceTaskResultMap">
+        SELECT * FROM 无人机任务表 WHERE 无人机ID = #{deviceid};
+    </select>
+    <select id="findTaskByTID" parameterType="int" resultMap="DeviceTaskResultMap">
+        SELECT * FROM 无人机任务表 WHERE 任务= #{taskid};
+    </select>
+    <!-- 定义新增无人机状态的 SQL 语句-->
+    <insert id="addTask" parameterType="com.hnu.entity.DeviceTask" useGeneratedKeys="true" >
+        INSERT INTO 无人机任务表(无人机,任务) VALUES (#{deviceid}, #{taskid});
+    </insert>
+
+    <!-- 定义根据无人机 ID 删除无人机状态的 SQL 语句-->
+    <delete id="deleteTaskByDId" parameterType="int" >
+        DELETE FROM 无人机任务表 WHERE 无人机=#{deviceid};
+    </delete>
+    <delete id="deleteTaskByTId" parameterType="int" >
+        DELETE FROM 无人机任务表 WHERE 任务=#{taskid};
+    </delete>
+
+    <!-- 定义根据用户 ID 更新用户动作的 SQL 语句-->
+    <update id="updateTaskByTId" parameterType="map" >
+        UPDATE 无人机任务表 SET 无人机= #{deviceid} WHERE 任务 = #{taskid};
+    </update>
+</mapper>
+
